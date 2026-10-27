@@ -3,13 +3,34 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Custom colors — add as: --name: #hex; */
+  --text-charcoal: rgba(48, 55, 53, 1);
+  --primary-brand: rgba(18, 63, 58, 1);
+  --light-teal: rgba(2, 121, 108, 1);
+  --secondary-accent: rgba(198, 217, 210, 1);
+  --cards-and-sections: rgba(255, 255, 255, 1);
+  --main-background: rgba(247, 245, 240, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Map each custom color here so Tailwind recognizes it: --color-name: var(--name); */
+  --color-text-charcoal: var(--text-charcoal);
+  --color-primary-brand: var(--primary-brand);
+  --color-light-teal: var(--light-teal);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-cards-and-sections: var(--cards-and-sections);
+  --color-main-background: var(--main-background);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-manrope: var(--font-manrope);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-newsreader: var(--font-newsreader);
+  --font-inter: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
