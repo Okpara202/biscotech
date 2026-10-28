@@ -1,0 +1,74 @@
+import Image from "next/image";
+import Link from "next/link";
+import Typography from "../typography";
+
+const footerLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/our_work", label: "Our work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/academy", label: "Academy" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-primary-brand pt-8 pb-4 text-cards-and-sections md:pt-10.25 md:pb-4.5">
+      <div className="mx-auto page-container">
+        <div className="flex flex-col items-center gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
+          {/* Logo on a white tile (smaller on phones) */}
+          <Link
+            href="/"
+            aria-label="BiscoTech home"
+            className="flex h-15 w-16 shrink-0 items-center justify-center rounded-2xl bg-cards-and-sections md:h-20 md:w-21.5 md:rounded-[1.25rem]"
+          >
+            <Image
+              src="/img/Logo.svg"
+              alt="BiscoTech"
+              width={60}
+              height={71}
+              className="h-auto w-11 md:w-15"
+            />
+          </Link>
+
+          <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-1 md:justify-start md:gap-x-8.5">
+            {footerLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="p-2 underline-offset-4 hover:underline md:p-2.5"
+              >
+                {/* 14px on phones, Figma's 20px from md */}
+                <Typography
+                  variant="cardHeading"
+                  as="span"
+                  className="text-sm leading-5 md:text-base lg:text-xl lg:leading-7"
+                >
+                  {label}
+                </Typography>
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Always side by side. Phones: two equal halves, each text centred in its half
+            (may wrap onto two lines). md+: Figma's left/right split. */}
+        <div className="mt-6 flex items-start justify-between gap-4 border-t border-secondary-accent pt-3 md:mt-28.75 md:items-center md:gap-2 md:pt-6.5">
+          <Typography
+            variant="contactHeader"
+            as="p"
+            className="flex-1 text-center text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-left md:text-sm lg:text-base lg:leading-7"
+          >
+            Startups · Businesses · Personal brands
+          </Typography>
+          <Typography
+            variant="contactHeader"
+            as="p"
+            className="flex-1 text-center text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-left md:text-sm lg:text-base lg:leading-7"
+          >
+            Thoughtful digital. Meaningful growth.
+          </Typography>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -9,32 +9,35 @@ export const variantStyles = {
   h4: "text-2xl font-semibold leading-snug",
   h5: "text-xl font-medium leading-normal",
   h6: "text-lg font-medium leading-normal",
-  body: "font-dm-sans text-base font-normal leading-[1.4rem] tracking-normal",
+  // Responsive sizes: below lg the size is fluid — clamp(size at 320px, ..., Figma size) —
+  // growing smoothly from phone through tablet and reaching the Figma size at 1024px,
+  // so there's no jump. From lg (1024px+, laptop/desktop) it's the exact Figma size.
+  body: "font-dm-sans text-[length:clamp(0.875rem,0.818rem+0.284vw,1rem)] lg:text-base font-normal leading-[1.5] lg:leading-[1.4rem] tracking-normal",
   small: "text-sm font-normal leading-normal",
   caption: "text-xs font-normal leading-normal",
   navButton:
     "font-manrope text-base font-normal leading-[1.4rem] tracking-normal",
   primaryButton:
-    "font-dm-sans text-base font-semibold leading-[1.4rem] tracking-normal",
-  text: "font-dm-sans text-sm font-normal leading-[1.225rem] tracking-normal",
+    "font-dm-sans text-[length:clamp(0.875rem,0.818rem+0.284vw,1rem)] lg:text-base font-semibold leading-[1.4] lg:leading-[1.4rem] tracking-normal",
+  text: "font-dm-sans text-[length:clamp(0.75rem,0.693rem+0.284vw,0.875rem)] lg:text-sm font-normal leading-[1.4] lg:leading-[1.225rem] tracking-normal",
   hero: "font-manrope text-[4rem] font-bold leading-[5.6rem] tracking-[-0.02em]",
   subHeading:
-    "font-manrope text-[1.75rem] font-semibold leading-[2.45rem] tracking-[0.005em]",
+    "font-manrope text-[length:clamp(1.0625rem,0.75rem+1.5625vw,1.75rem)] lg:text-[1.75rem] font-semibold leading-[1.35] lg:leading-[2.45rem] tracking-[0.005em]",
   navigation:
-    "font-dm-sans text-sm font-medium leading-[1.225rem] tracking-normal",
+    "font-dm-sans text-[length:clamp(0.71875rem,0.648rem+0.355vw,0.875rem)] lg:text-sm font-medium leading-[1.4] lg:leading-[1.225rem] tracking-[0.04em] lg:tracking-normal",
   section:
-    "font-inter text-[2.75rem] font-bold leading-[3.85rem] tracking-[-0.012em]",
+    "font-inter text-[length:clamp(1.375rem,0.75rem+3.125vw,2.75rem)] lg:text-[2.75rem] font-bold leading-[1.3] lg:leading-[3.85rem] tracking-[-0.012em]",
   cardHeading:
-    "font-manrope text-xl font-semibold leading-7 tracking-[0.003em]",
+    "font-manrope text-[length:clamp(1rem,0.886rem+0.568vw,1.25rem)] lg:text-xl font-semibold leading-[1.4] lg:leading-7 tracking-[0.003em]",
   contactHeader:
-    "font-manrope text-base font-bold leading-7 tracking-[0.003em]",
-  largeBody: "font-dm-sans text-lg font-normal leading-7.5 tracking-normal",
+    "font-manrope text-[length:clamp(0.875rem,0.818rem+0.284vw,1rem)] lg:text-base font-bold leading-[1.6] lg:leading-7 tracking-[0.003em]",
+  largeBody: "font-dm-sans text-[length:clamp(0.9375rem,0.852rem+0.426vw,1.125rem)] lg:text-lg font-normal leading-[1.6] lg:leading-7.5 tracking-normal",
 
   // Inline variants, to be nested inside another Typography
   "span-header":
     "font-newsreader text-[4rem] font-semibold italic leading-20 tracking-[-0.02em]",
   "span-newsreader":
-    "font-newsreader text-[2.75rem] font-bold italic leading-[3.85rem] tracking-[-0.012em]",
+    "font-newsreader text-[length:clamp(1.375rem,0.75rem+3.125vw,2.75rem)] lg:text-[2.75rem] font-bold italic leading-[1.3] lg:leading-[3.85rem] tracking-[-0.012em]",
 } as const;
 
 const defaultTags: Record<TypographyVariant, ElementType> = {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Inter, Manrope, Newsreader } from "next/font/google";
+import Header from "@/components/ui/reusable/header";
+import Footer from "@/components/ui/reusable/footer";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -34,7 +36,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${manrope.variable} ${dmSans.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

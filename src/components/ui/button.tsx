@@ -2,7 +2,14 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { variantStyles, type TypographyVariant } from "@/components/ui/typography";
 
-type ButtonProps = ComponentPropsWithoutRef<"button"> & {
+// The primary (filled teal) button look, for links that should look like a Button.
+// Kept here (not in a "use client" file) so server components can import it too.
+export const primaryButtonLinkClass = cn(
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-[0.625rem] bg-primary-brand px-6 py-3 text-cards-and-sections",
+  variantStyles.primaryButton,
+);
+
+type ButtonProps =ComponentPropsWithoutRef<"button"> & {
   typography?: TypographyVariant;
   icon?: ReactNode;
   iconPosition?: "left" | "right";

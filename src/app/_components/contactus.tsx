@@ -1,0 +1,184 @@
+"use client";
+import { useState, type FormEvent } from "react";
+import Typography, { variantStyles } from "@/components/ui/typography";
+import Input from "@/components/ui/input";
+import Select from "@/components/ui/select";
+import Textarea from "@/components/ui/textarea";
+import Button from "@/components/ui/button";
+import { ArrowUpEnd, DarkArrowRightUp } from "@/components/ui/reusable/svg";
+import { cn } from "@/lib/utils";
+
+const CONTACT_EMAIL = "hello@bisco.com";
+
+const services = [
+  "Website design & dev",
+  "Branding & visual identity",
+  "Digital marketing",
+  "Social media management",
+  "Academy / training",
+  "Something else",
+];
+
+const estimates = [
+  "I'd like to discuss this",
+  "Under $1,000",
+  "$1,000 – $5,000",
+  "$5,000+",
+];
+
+// Shared field styling from Figma: white field, sage border, 20px Manrope text
+const fieldClass = cn(
+  "border-secondary-accent bg-cards-and-sections text-primary-brand placeholder:text-secondary-accent",
+  variantStyles.cardHeading,
+);
+const labelClass = "text-primary-brand";
+// Phones: shorter fields and a tighter label gap; md+ keeps the Figma spacing
+const fieldContainer = "gap-2 md:gap-[1.125rem]";
+const compactField = "py-3 md:py-[1.125rem]";
+
+export default function ContactUs() {
+  const [service, setService] = useState("");
+  const [estimate, setEstimate] = useState("");
+
+  // No backend yet: "Prepare inquiry" opens the visitor's email app with the form filled in
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Email: ${data.get("email")}`,
+      `What I need: ${data.get("service") || "Not specified"}`,
+      `Estimate: ${data.get("estimate") || "Not specified"}`,
+      "",
+      `${data.get("project")}`,
+    ].join("\n");
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      `Project inquiry from ${data.get("name")}`,
+    )}&body=${encodeURIComponent(body)}`;
+  }
+
+  return (
+    <section id="contact" className="scroll-mt-8 bg-main-background py-16 lg:py-24">
+      <div className="mx-auto flex page-container flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+        {/* Intro */}
+        <div className="flex flex-col items-center gap-4 text-center md:gap-5 lg:w-110.75 lg:shrink-0 lg:items-start lg:text-left">
+          <Typography variant="navigation" className="text-primary-brand">
+            LET&apos;S TALK
+          </Typography>
+          <Typography variant="section" className="text-primary-brand">
+            Let&apos;s make{" "}
+            <Typography variant="span-newsreader">something meaningful</Typography>
+          </Typography>
+          <Typography variant="body" className="text-text-charcoal lg:w-72.25">
+            Share a little about your project. We&apos;ll use it to understand
+            what you need and how we might help.
+          </Typography>
+
+          <div className="flex flex-col items-center gap-1 lg:items-start">
+            <Typography variant="body" className="text-text-charcoal">
+              EMAIL
+            </Typography>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className={cn(
+                "inline-flex items-center gap-2 py-3 text-primary-brand",
+                variantStyles.primaryButton,
+              )}
+            >
+              {CONTACT_EMAIL}
+              <DarkArrowRightUp />
+            </a>
+          </div>
+
+          <div className="flex flex-col gap-2 text-text-charcoal">
+            <Typography variant="body">WORKING WITH</Typography>
+            <Typography variant="body">
+              Startups · Businesses · Personal brands
+            </Typography>
+          </div>
+        </div>
+
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-full flex-col items-start gap-4.5 lg:w-161.5"
+        >
+          <div className="grid w-full grid-cols-1 gap-x-8 gap-y-4.5 sm:grid-cols-2">
+            <Input
+              name="name"
+              label="Your name *"
+              placeholder="E.g Alex Johnson"
+              autoComplete="name"
+              required
+              className={cn(fieldClass, compactField)}
+              labelClassName={labelClass}
+              containerClassName={fieldContainer}
+            />
+            <Input
+              name="email"
+              type="email"
+              label="Email address *"
+              placeholder="E.g alex@company.com"
+              autoComplete="email"
+              required
+              className={cn(fieldClass, compactField)}
+              labelClassName={labelClass}
+              containerClassName={fieldContainer}
+            />
+            <Select
+              name="service"
+              label="What do you need?"
+              placeholder="Website design & dev"
+              value={service}
+              onChange={(e) => setService(e.target.value)}
+              // Placeholder shows in sage until something is picked, like the inputs
+              className={cn(fieldClass, compactField, !service && "text-secondary-accent")}
+              labelClassName={labelClass}
+              containerClassName={cn(fieldContainer, "text-primary-brand")}
+            >
+              {services.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </Select>
+            <Select
+              name="estimate"
+              label="What's your estimate?"
+              placeholder="I'd like to discuss this"
+              value={estimate}
+              onChange={(e) => setEstimate(e.target.value)}
+              className={cn(fieldClass, compactField, !estimate && "text-secondary-accent")}
+              labelClassName={labelClass}
+              containerClassName={cn(fieldContainer, "text-primary-brand")}
+            >
+              {estimates.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </Select>
+          </div>
+
+          <Textarea
+            name="project"
+            label="Tell us about your project *"
+            placeholder="What are you building, and what are you looking to achieve?"
+            required
+            className={fieldClass}
+            labelClassName={labelClass}
+            containerClassName={cn(fieldContainer, "w-full")}
+          />
+
+          <Button
+            type="submit"
+            icon={<ArrowUpEnd />}
+            className="w-full border-primary-brand bg-primary-brand text-cards-and-sections sm:w-auto"
+          >
+            Prepare inquiry
+          </Button>
+        </form>
+      </div>
+    </section>
+  );
+}
