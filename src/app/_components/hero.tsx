@@ -3,13 +3,6 @@ import Button from "@/components/ui/button";
 import { ArrowUpEnd } from "@/components/ui/reusable/svg";
 import Image from "next/image";
 
-// Below lg: fluid 28px (at 320px) → 45px (at 1024px), meeting the laptop size with no jump.
-// lg and up (laptop): unchanged — 4.4vw, capped at the Figma value (64px)
-const heroText =
-  "text-[length:clamp(1.75rem,1.267rem+2.415vw,2.8125rem)] leading-[1.25] lg:text-[length:clamp(2rem,4.4vw,4rem)] lg:leading-[1.4]";
-const heroSpanText =
-  "text-[length:clamp(1.75rem,1.267rem+2.415vw,2.8125rem)] leading-[1.25] lg:text-[length:clamp(2rem,4.4vw,4rem)] lg:leading-[1.25]";
-
 export default function Hero() {
   return (
     <div className="overflow-x-clip bg-linear-to-b from-[rgba(247,245,240,0.2)] from-[69.71%] to-[rgba(18,63,58,0.2)] to-100%">
@@ -17,10 +10,16 @@ export default function Hero() {
         {/* Always one line, pushed to the edges. Text scales with the phone width
             (10px at 320px) so it fits; Figma's 14px from sm up */}
         <aside className="flex flex-nowrap justify-between items-center gap-x-2">
-          <Typography variant="text" className="whitespace-nowrap uppercase text-text-charcoal text-[length:clamp(0.625rem,3.1vw,0.75rem)] leading-4 sm:text-sm sm:leading-[1.225rem]">
+          <Typography
+            variant="text"
+            className="whitespace-nowrap uppercase text-text-charcoal text-[clamp(0.625rem,3.1vw,0.75rem)] leading-4 sm:text-sm sm:leading-[1.225rem]"
+          >
             Independent Digital Agency
           </Typography>
-          <Typography variant="text" className="whitespace-nowrap uppercase text-text-charcoal text-[length:clamp(0.625rem,3.1vw,0.75rem)] leading-4 sm:text-sm sm:leading-[1.225rem]">
+          <Typography
+            variant="text"
+            className="whitespace-nowrap uppercase text-text-charcoal text-[clamp(0.625rem,3.1vw,0.75rem)] leading-4 sm:text-sm sm:leading-[1.225rem]"
+          >
             Built for what&apos;s Next
           </Typography>
         </aside>
@@ -31,19 +30,19 @@ export default function Hero() {
           <div className="flex w-full min-w-0 flex-col items-center gap-5 text-center md:gap-6 lg:flex-1 lg:max-w-169.75 lg:items-start lg:gap-9.5 lg:text-left">
             <Typography
               variant="hero"
-              className={`max-w-166.75 text-primary-brand ${heroText}`}
+              className="max-w-166.75 text-primary-brand"
             >
               We Design{" "}
               <Typography
                 variant="span-header"
-                className={`text-light-teal ${heroSpanText}`}
+                className="text-light-teal"
               >
                 Experiences
               </Typography>{" "}
               That Make Your Brand{" "}
               <Typography
                 variant="span-header"
-                className={`text-light-teal ${heroSpanText}`}
+                className="text-light-teal"
               >
                 Unforgettable
               </Typography>

@@ -1,6 +1,12 @@
-export function ArrowUpEnd() {
+import { cn } from "@/lib/utils";
+
+// Optional className goes on the <svg>: size classes (e.g. "size-5") override width/height,
+// and text colour classes (e.g. "text-primary-brand") recolour it, since the stroke uses
+// currentColor. Without a colour class it stays white, as before.
+export function ArrowUpEnd({ className }: { className?: string }) {
   return (
     <svg
+      className={cn("text-white", className)}
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -12,7 +18,7 @@ export function ArrowUpEnd() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        stroke="white"
+        stroke="currentColor"
       />
     </svg>
   );
@@ -199,6 +205,51 @@ export function DarkArrowRightUp() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        stroke="#123F3A"
+      />
+    </svg>
+  );
+}
+
+export function SearchIcon() {
+  return (
+    <svg
+      width="72"
+      height="80"
+      viewBox="0 0 72 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="72" height="80" rx="20" fill="#C6D9D2" />
+      <path
+        d="M37.5 44C34.4624 44 32 41.5376 32 38.5C32 35.4624 34.4624 33 37.5 33C40.5376 33 43 35.4624 43 38.5C43 41.5376 40.5376 44 37.5 44Z"
+        strokeWidth="2"
+        stroke="#123F3A"
+      />
+      <path
+        d="M33 43.4141L29.414 47.0001"
+        strokeWidth="2"
+        strokeLinecap="round"
+        stroke="#123F3A"
+      />
+    </svg>
+  );
+}
+
+export function PlusIcon() {
+  return (
+    <svg
+      width="72"
+      height="80"
+      viewBox="0 0 72 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="72" height="80" rx="20" fill="#C6D9D2" />
+      <path
+        d="M36 52V40M36 40V28M36 40H48M36 40H24"
+        strokeWidth="2"
+        strokeLinecap="round"
         stroke="#123F3A"
       />
     </svg>

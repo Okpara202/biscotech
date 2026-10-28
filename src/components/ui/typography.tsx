@@ -20,7 +20,9 @@ export const variantStyles = {
   primaryButton:
     "font-dm-sans text-[length:clamp(0.875rem,0.818rem+0.284vw,1rem)] lg:text-base font-semibold leading-[1.4] lg:leading-[1.4rem] tracking-normal",
   text: "font-dm-sans text-[length:clamp(0.75rem,0.693rem+0.284vw,0.875rem)] lg:text-sm font-normal leading-[1.4] lg:leading-[1.225rem] tracking-normal",
-  hero: "font-manrope text-[4rem] font-bold leading-[5.6rem] tracking-[-0.02em]",
+  // Page hero heading: fluid 28px (320px) → 45px (1024px); laptop+ scales with the screen
+  // (4.4vw) up to Figma's 64px
+  hero: "font-manrope text-[length:clamp(1.75rem,1.267rem+2.415vw,2.8125rem)] lg:text-[length:clamp(2rem,4.4vw,4rem)] font-bold leading-[1.25] lg:leading-[1.4] tracking-[-0.02em]",
   subHeading:
     "font-manrope text-[length:clamp(1.0625rem,0.75rem+1.5625vw,1.75rem)] lg:text-[1.75rem] font-semibold leading-[1.35] lg:leading-[2.45rem] tracking-[0.005em]",
   navigation:
@@ -35,7 +37,7 @@ export const variantStyles = {
 
   // Inline variants, to be nested inside another Typography
   "span-header":
-    "font-newsreader text-[4rem] font-semibold italic leading-20 tracking-[-0.02em]",
+    "font-newsreader text-[length:clamp(1.75rem,1.267rem+2.415vw,2.8125rem)] lg:text-[length:clamp(2rem,4.4vw,4rem)] font-semibold italic leading-[1.25] tracking-[-0.02em]",
   "span-newsreader":
     "font-newsreader text-[length:clamp(1.375rem,0.75rem+3.125vw,2.75rem)] lg:text-[2.75rem] font-bold italic leading-[1.3] lg:leading-[3.85rem] tracking-[-0.012em]",
 } as const;
