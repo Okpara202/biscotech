@@ -7,34 +7,16 @@ import Textarea from "@/components/ui/textarea";
 import Button from "@/components/ui/button";
 import { ArrowUpEnd, DarkArrowRightUp } from "@/components/ui/reusable/svg";
 import { cn } from "@/lib/utils";
-
-const CONTACT_EMAIL = "hello@bisco.com";
-
-const services = [
-  "Website design & dev",
-  "Branding & visual identity",
-  "Digital marketing",
-  "Social media management",
-  "Academy / training",
-  "Something else",
-];
-
-const estimates = [
-  "I'd like to discuss this",
-  "Under $1,000",
-  "$1,000 – $5,000",
-  "$5,000+",
-];
-
-// Shared field styling from Figma: white field, sage border, 20px Manrope text
-const fieldClass = cn(
-  "border-secondary-accent bg-cards-and-sections text-primary-brand placeholder:text-secondary-accent",
-  variantStyles.cardHeading,
-);
-const labelClass = "text-primary-brand";
-// Phones: shorter fields and a tighter label gap; md+ keeps the Figma spacing
-const fieldContainer = "gap-2 md:gap-[1.125rem]";
-const compactField = "py-3 md:py-[1.125rem]";
+import {
+  CONTACT_EMAIL,
+  compactField,
+  estimates,
+  fieldClass,
+  fieldContainer,
+  labelClass,
+  openInquiryEmail,
+  services,
+} from "@/components/ui/reusable/inquiry";
 
 export default function ContactUs() {
   const [service, setService] = useState("");
@@ -43,18 +25,7 @@ export default function ContactUs() {
   // No backend yet: "Prepare inquiry" opens the visitor's email app with the form filled in
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const body = [
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `What I need: ${data.get("service") || "Not specified"}`,
-      `Estimate: ${data.get("estimate") || "Not specified"}`,
-      "",
-      `${data.get("project")}`,
-    ].join("\n");
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      `Project inquiry from ${data.get("name")}`,
-    )}&body=${encodeURIComponent(body)}`;
+    openInquiryEmail(new FormData(e.currentTarget));
   }
 
   return (
