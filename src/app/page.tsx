@@ -6,6 +6,14 @@ import LittleAboutBisco from "./_components/littleaboutbisco";
 import HowWeWork from "./_components/howwework";
 import TellUsAbout from "./_components/tellusabout";
 import ContactUs from "./_components/contactus";
+import { pageMetadata } from "@/lib/seo";
+
+// No title: the home page uses the layout's default "BiscoTech — Thoughtful design..."
+export const metadata = pageMetadata({
+  description:
+    "We help ambitious businesses turn good ideas into thoughtful digital experiences — through design, technology and marketing that work together.",
+  path: "/",
+});
 
 export default function Home() {
   return (

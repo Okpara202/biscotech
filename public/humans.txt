@@ -1,0 +1,8 @@
+/* TEAM */
+Developer: Favour Okpara
+GitHub: https://github.com/Okpara202
+
+Designer: Kassie
+
+/* SITE */
+Built with: Next.js, React, TypeScript, Tailwind CSS

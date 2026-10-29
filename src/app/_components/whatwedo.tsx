@@ -13,7 +13,7 @@ import Image from "next/image";
 const whatWeDoList = [
   {
     headerIcon: <WeDoArrowUp />,
-    heading: "Website & Development",
+    heading: "Website & App Development",
     description:
       "Fast, responsive websites that make a strong first impression and guide visitors towards action.",
     button: "Build Your Website",
