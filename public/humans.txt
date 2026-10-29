@@ -4,5 +4,7 @@ GitHub: https://github.com/Okpara202
 
 Designer: Kassie
 
+Backend: Divine
+
 /* SITE */
 Built with: Next.js, React, TypeScript, Tailwind CSS
