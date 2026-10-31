@@ -7,6 +7,7 @@ import HowWeWork from "./_components/howwework";
 import TellUsAbout from "./_components/tellusabout";
 import ContactUs from "./_components/contactus";
 import { pageMetadata } from "@/lib/seo";
+import IntroducingBiscoTechAcademy from "./_components/introducingBiscoTechAcademy";
 
 // No title: the home page uses the layout's default "BiscoTech — Thoughtful design..."
 export const metadata = pageMetadata({
@@ -24,6 +25,7 @@ export default function Home() {
       <SelectedConcepts />
       <LittleAboutBisco />
       <HowWeWork />
+      <IntroducingBiscoTechAcademy />
       <TellUsAbout />
       <ContactUs />
     </>

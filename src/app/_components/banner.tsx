@@ -2,7 +2,7 @@ import { NorthStar } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
 
 const BannerItems = [
-  "Web Design & Development",
+  "Web Design & App Development",
   "Brand Identity",
   "Digital Marketing",
   "Social Media",

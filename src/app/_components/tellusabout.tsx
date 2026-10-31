@@ -19,7 +19,10 @@ export default function TellUsAbout() {
           <Typography variant="text" className="text-primary-brand">
             Have something in mind?
           </Typography>
-          <Typography variant="section" className="text-primary-brand lg:w-157.25">
+          <Typography
+            variant="section"
+            className="text-primary-brand lg:w-157.25"
+          >
             Your next big move deserves{" "}
             <Typography variant="span-newsreader">
               a good digital partner.
