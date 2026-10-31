@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavLink, { MobileMenu } from "./nav";
-import { primaryButtonLinkClass } from "../button";
+import Button from "../button";
 import { ArrowUpEnd } from "./svg";
-import { cn } from "@/lib/utils";
 import HeaderOffset from "./headeroffset";
 
 export default function Header() {
@@ -37,13 +36,13 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           {/* cn (tailwind-merge) so "hidden" replaces the base "inline-flex" instead of fighting it */}
-          <Link
+          <Button
             href="/#contact"
-            className={cn(primaryButtonLinkClass, "hidden sm:inline-flex")}
+            icon={<ArrowUpEnd />}
+            className="shrink-0 border-0 bg-primary-brand text-cards-and-sections hidden sm:inline-flex"
           >
             Let&apos;s Talk
-            <ArrowUpEnd />
-          </Link>
+          </Button>
           <MobileMenu />
         </div>
       </div>

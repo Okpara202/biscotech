@@ -17,6 +17,7 @@ const whatWeDoList = [
     description:
       "Fast, responsive websites that make a strong first impression and guide visitors towards action.",
     button: "Build Your Website",
+    href: "/contact#contact",
     image: "/img/image what we do01.png",
   },
   {
@@ -25,6 +26,7 @@ const whatWeDoList = [
     description:
       "We build distinctive brand identities that communicate your values, connect with your audience, and make your business unforgettable.",
     button: "Let's Build Your Brand",
+    href: "/contact#contact",
     image: "/img/girlonpc.jpg",
   },
   {
@@ -33,6 +35,7 @@ const whatWeDoList = [
     description:
       "Focused campaigns and practical digital strategy to help you reach the people who matter.",
     button: "Grow Your Reach",
+    href: "/contact#contact",
     image: "/img/peopleonpc.jpg",
   },
   {
@@ -41,6 +44,7 @@ const whatWeDoList = [
     description:
       "Thoughtful content planning and consistent social presence that supports your business goals.",
     button: "Show Up with Purpose",
+    href: "/contact#contact",
     image: "/img/person on phone.jpg",
   },
   {
@@ -49,6 +53,7 @@ const whatWeDoList = [
     description:
       "Learn in-demand digital skills through practical training designed to turn knowledge into real-world expertise.",
     button: "Explore Courses",
+    href: "/academy#courses",
     image: "/img/people learning.jpg",
   },
 ];
@@ -58,7 +63,7 @@ const displayWhatWeDoItems = whatWeDoList.map((item, index) => (
     key={index}
     // Phones: stacked. Tablet (md): two columns — title + image | description + link.
     // Laptop (lg): the Figma three-part row.
-    className="flex flex-col gap-4 border-b border-b-secondary-accent py-6 md:grid md:grid-cols-2 md:gap-8 lg:flex lg:flex-row lg:items-stretch lg:justify-between"
+    className="group flex flex-col gap-4 border-b border-b-secondary-accent py-6 md:grid md:grid-cols-2 md:gap-8 lg:flex lg:flex-row lg:items-stretch lg:justify-between"
   >
     {/* Icon + title (324px) and image (400×256), 26px apart */}
     <div className="flex min-w-0 flex-col gap-4 md:gap-6 lg:flex-row lg:items-center lg:gap-6.5">
@@ -77,13 +82,13 @@ const displayWhatWeDoItems = whatWeDoList.map((item, index) => (
       </aside>
 
       {/* Fixed 400:256 frame; object-cover crops each photo instead of stretching it */}
-      <div className="relative aspect-400/256 w-full max-w-100 min-w-0 md:max-w-none lg:w-100 lg:max-w-100">
+      <div className="relative aspect-400/256 w-full overflow-hidden max-w-100 min-w-0 md:max-w-none lg:w-100 lg:max-w-100">
         <Image
           src={item.image}
           alt={item.heading}
           fill
           sizes="(min-width: 1024px) 400px, 100vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
         />
       </div>
     </div>
@@ -95,6 +100,8 @@ const displayWhatWeDoItems = whatWeDoList.map((item, index) => (
       </Typography>
 
       <Button
+        variant="text"
+        href={item.href}
         icon={<DarkArrowRightUp />}
         className="border-0 px-0 text-primary-brand"
         typography="primaryButton"
@@ -134,6 +141,7 @@ export default function WhatWeDo() {
             </Typography>
 
             <Button
+              href="/services"
               typography="primaryButton"
               icon={<ArrowUpEnd />}
               className="text-cards-and-sections bg-primary-brand mt-6 lg:mt-11.75"

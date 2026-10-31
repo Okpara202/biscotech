@@ -29,7 +29,7 @@ export default function Textarea({
       <textarea
         id={textareaId}
         className={cn(
-          "min-h-[8.0625rem] w-full resize-y rounded-[1.25rem] border bg-transparent px-6 py-2.5",
+          "min-h-[8.0625rem] w-full resize-y rounded-[1.25rem] border bg-transparent px-6 py-2.5 transition-[border-color,box-shadow] duration-300 outline-none hover:border-light-teal/60 focus:border-light-teal focus:ring-4 focus:ring-light-teal/15",
           variantStyles.body,
           "leading-7",
           className,

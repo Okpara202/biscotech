@@ -35,7 +35,7 @@ export default function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="p-2 underline-offset-4 hover:underline md:p-2.5"
+                className="relative p-2 after:absolute after:inset-x-2 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 md:p-2.5 md:after:inset-x-2.5"
               >
                 {/* 14px on phones, Figma's 20px from md */}
                 <Typography

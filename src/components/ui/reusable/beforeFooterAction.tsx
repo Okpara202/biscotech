@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { primaryButtonLinkClass } from "../button";
+import Button from "../button";
 import { ArrowUpEnd } from "./svg";
 import Typography from "../typography";
 import { cn } from "@/lib/utils";
@@ -41,7 +40,7 @@ export default function BeforeFooterAction({
     // bottom, 81px sides, button vertically centred). justify-between spaces them — no fixed gap.
     <div
       className={cn(
-        "page-container flex flex-col items-center gap-8 rounded-[1.25rem] bg-primary-brand px-5 py-10 text-center md:px-10 md:py-14 lg:flex-row lg:justify-between lg:gap-10 lg:px-20.25 lg:py-16 lg:text-left",
+        "page-container tech-glow flex flex-col items-center gap-8 rounded-[1.25rem] bg-primary-brand px-5 py-10 text-center md:px-10 md:py-14 lg:flex-row lg:justify-between lg:gap-10 lg:px-20.25 lg:py-16 lg:text-left",
         className,
       )}
     >
@@ -79,16 +78,13 @@ export default function BeforeFooterAction({
       </div>
 
       {/* A link (not a button) so it can go to another page; full width on phones */}
-      <Link
+      <Button
         href={action.href}
-        className={cn(
-          primaryButtonLinkClass,
-          "w-full bg-secondary-accent text-primary-brand sm:w-auto",
-        )}
+        icon={<ArrowUpEnd className="text-primary-brand" />}
+        className="shrink-0 border-0 bg-primary-brand text-cards-and-sections w-full bg-secondary-accent text-primary-brand sm:w-auto"
       >
         {action.label}
-        <ArrowUpEnd className="text-primary-brand" />
-      </Link>
+      </Button>
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import Link from "next/link";
 import Typography from "../typography";
-import { primaryButtonLinkClass } from "../button";
+import Button from "../button";
 import { ArrowUpEnd } from "./svg";
 import { cn } from "@/lib/utils";
 
@@ -79,21 +78,17 @@ export default function EveryHero({
             // Phones: full-width stacked buttons; side by side from sm
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-6">
               {primaryAction && (
-                <Link href={primaryAction.href} className={cn(primaryButtonLinkClass, "w-full sm:w-auto")}>
+                <Button href={primaryAction.href} icon={<ArrowUpEnd />} className="shrink-0 border-0 bg-primary-brand text-cards-and-sections w-full sm:w-auto">
                   {primaryAction.label}
-                  <ArrowUpEnd />
-                </Link>
+                </Button>
               )}
               {secondaryAction && (
-                <Link
+                <Button
                   href={secondaryAction.href}
-                  className={cn(
-                    primaryButtonLinkClass,
-                    "w-full border border-primary-brand bg-transparent text-text-charcoal sm:w-auto",
-                  )}
+                  className="shrink-0 border-0 bg-primary-brand text-cards-and-sections w-full border border-primary-brand bg-transparent text-text-charcoal hover:bg-primary-brand hover:text-cards-and-sections sm:w-auto"
                 >
                   {secondaryAction.label}
-                </Link>
+                </Button>
               )}
             </div>
           )}

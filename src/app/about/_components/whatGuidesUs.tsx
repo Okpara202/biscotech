@@ -23,7 +23,7 @@ const guides = [
 const displayGuides = guides.map((guide) => (
   <div
     key={guide.descTitle}
-    className="flex flex-col gap-4 rounded-[1.25rem] border border-secondary-accent bg-cards-and-sections px-6 pt-4 pb-8 md:gap-5 md:pt-5 md:pb-10 md:pl-8 md:pr-19 lg:pr-8 xl:pr-19"
+    className="card-hover flex flex-col gap-4 rounded-[1.25rem] border border-secondary-accent bg-cards-and-sections px-6 pt-4 pb-8 md:gap-5 md:pt-5 md:pb-10 md:pl-8 md:pr-19 lg:pr-8 xl:pr-19"
   >
     <Typography variant="text" as="p" className="py-2.5 text-light-teal">
       {guide.title}

@@ -55,7 +55,7 @@ function CornerRings() {
 const displaySteps = steps.map((step) => (
   <div
     key={step.label}
-    className="relative overflow-hidden rounded-[1.25rem] border border-secondary-accent bg-cards-and-sections px-6 pt-8 pb-28 md:px-8 md:pt-12 md:pb-32 lg:min-h-81 lg:pt-16.75 lg:pr-24 lg:pb-16.75 lg:pl-11.25"
+    className="card-hover relative overflow-hidden rounded-[1.25rem] border border-secondary-accent bg-cards-and-sections px-6 pt-8 pb-28 md:px-8 md:pt-12 md:pb-32 lg:min-h-81 lg:pt-16.75 lg:pr-24 lg:pb-16.75 lg:pl-11.25"
   >
     <CornerRings />
 

@@ -12,7 +12,7 @@ import IntroducingBiscoTechAcademy from "./_components/introducingBiscoTechAcade
 // No title: the home page uses the layout's default "BiscoTech — Thoughtful design..."
 export const metadata = pageMetadata({
   description:
-    "We help ambitious businesses turn good ideas into thoughtful digital experiences — through design, technology and marketing that work together.",
+    "We help ambitious businesses turn good ideas into thoughtful digital experiences — through design, technology and marketing that work together. Plus BiscoTech Academy: practical courses in design, development and digital marketing.",
   path: "/",
 });
 

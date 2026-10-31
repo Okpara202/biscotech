@@ -96,3 +96,102 @@ main {
 main > :first-child {
   padding-top: var(--header-h, 0px);
 }
+
+/* ───────────────────────── Motion ─────────────────────────
+   Everything below runs only when the visitor hasn't asked for reduced motion.
+   Opacity/transform/filter only (never layout), so nothing jumps around. */
+/* transform (not translate) so it never blocks the hover lift (card-hover, buttons), which
+   uses the separate translate property */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Gentle bob for floating labels (transform, so it doesn't fight their rotate/translate) */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.375rem);
+  }
+}
+
+/* Slow drifting light behind the green CTA card */
+@keyframes glow-drift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* No first-load animation for now (header/hero just appear); the hero is skipped below.
+     Every later section: each block rises in as it scrolls into view, tied to the scroll
+     position. Lists/grids marked .reveal-children reveal item by item instead of all at
+     once. Browsers without scroll-driven animations simply show everything. */
+  @supports (animation-timeline: view()) {
+    main > :not(:first-child) .page-container > :not(.reveal-children, [class*="animate-"]),
+    main > :not(:first-child) .reveal-children > * {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+  }
+
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .tech-glow::before {
+    animation: glow-drift 12s ease-in-out infinite;
+  }
+}
+
+/* Cards that lift on hover: brand-teal tinted shadow and border */
+@utility card-hover {
+  transition:
+    translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+
+  &:hover {
+    translate: 0 -0.25rem;
+    box-shadow: 0 1.25rem 2.5rem -1.25rem rgba(18, 63, 58, 0.35);
+    border-color: rgba(2, 121, 108, 0.45);
+  }
+}
+
+/* Soft light-teal glow layered behind a dark card's content */
+@utility tech-glow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 20% 30%,
+        rgba(2, 121, 108, 0.45),
+        transparent 45%
+      ),
+      radial-gradient(circle at 80% 70%, rgba(198, 217, 210, 0.18), transparent 40%);
+    background-size: 200% 200%;
+  }
+}

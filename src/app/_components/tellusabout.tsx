@@ -1,6 +1,6 @@
-import Typography, { variantStyles } from "@/components/ui/typography";
+import Typography from "@/components/ui/typography";
+import Button from "@/components/ui/button";
 import { ArrowUpEnd } from "@/components/ui/reusable/svg";
-import { cn } from "@/lib/utils";
 
 export default function TellUsAbout() {
   return (
@@ -32,16 +32,13 @@ export default function TellUsAbout() {
             Tell us what you&apos;re building, what isn&apos;t working, or where
             you want to go. We&apos;ll take it from there.
           </Typography>
-          <a
+          <Button
             href="#contact"
-            className={cn(
-              "inline-flex items-center justify-center gap-2 rounded-[0.625rem] bg-primary-brand px-6 py-3 text-cards-and-sections",
-              variantStyles.primaryButton,
-            )}
+            icon={<ArrowUpEnd />}
+            className="border-0 bg-primary-brand text-cards-and-sections"
           >
             Tell us about your project
-            <ArrowUpEnd />
-          </a>
+          </Button>
         </div>
       </div>
     </section>

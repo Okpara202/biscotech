@@ -72,12 +72,13 @@ export default function Hero() {
             {/* Phones: full-width stacked buttons (easy thumb targets); side by side from sm */}
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4.5 lg:justify-start">
               <Button
+                href="/contact"
                 className="w-full border-primary-brand bg-primary-brand text-cards-and-sections sm:w-auto"
                 icon={<ArrowUpEnd />}
               >
                 Let&apos;s build something
               </Button>
-              <Button className="w-full border-primary-brand text-text-charcoal sm:w-auto">
+              <Button href="/services" className="w-full border-primary-brand text-text-charcoal hover:bg-primary-brand hover:text-cards-and-sections sm:w-auto">
                 Explore our services
               </Button>
             </div>

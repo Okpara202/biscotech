@@ -44,7 +44,7 @@ export default function HowWeWork() {
         </div>
 
         {/* Steps */}
-        <ol className="grid grid-cols-1 gap-6.5 md:grid-cols-3">
+        <ol className="reveal-children grid grid-cols-1 gap-6.5 md:grid-cols-3">
           {steps.map((step) => (
             <li
               key={step.label}

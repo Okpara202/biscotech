@@ -106,11 +106,11 @@ export default function OurCapabilities() {
         </Typography>
 
         {/* Figma: two 590px cards per row, 20px apart; one column on phones */}
-        <ul className="mt-8 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-5 lg:gap-x-5 lg:gap-y-6.5">
+        <ul className="reveal-children mt-8 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-5 lg:gap-x-5 lg:gap-y-6.5">
           {services.map((service) => (
             <li
               key={service.title}
-              className="flex flex-col items-start gap-5 rounded-[1.25rem] border border-secondary-accent bg-cards-and-sections px-5 py-7 md:gap-4.5 md:px-6 md:py-10 lg:pr-18"
+              className="card-hover flex flex-col items-start gap-5 rounded-[1.25rem] border border-secondary-accent bg-cards-and-sections px-5 py-7 md:gap-4.5 md:px-6 md:py-10 lg:pr-18"
             >
               {/* Icons differ in size (60–72px); force one responsive height, width follows */}
               <span className="shrink-0 [&>svg]:h-11 [&>svg]:w-auto md:[&>svg]:h-13 lg:[&>svg]:h-15">

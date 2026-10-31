@@ -40,9 +40,12 @@ export default function Select({
           value={value}
           defaultValue={initialValue}
           className={cn(
-            "w-full cursor-pointer appearance-none rounded-[1.25rem] border bg-transparent py-[1.125rem] pr-14 pl-6",
+            "w-full cursor-pointer appearance-none rounded-[1.25rem] border bg-transparent py-[1.125rem] pr-14 pl-6 transition-[border-color,box-shadow] duration-300 outline-none hover:border-light-teal/60 focus:border-light-teal focus:ring-4 focus:ring-light-teal/15",
             variantStyles.body,
             "leading-7",
+            // The open list's options inherit the select's text colour, so while the sage
+            // placeholder colour is on they'd all look faded. Give them their own colours.
+            "[&_option]:bg-cards-and-sections [&_option]:text-text-charcoal",
             className,
           )}
           {...props}

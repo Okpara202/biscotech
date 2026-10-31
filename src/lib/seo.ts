@@ -21,7 +21,7 @@ export const siteConfig = {
   url: siteUrl.replace(/\/$/, ""),
   tagline: "Thoughtful design. Meaningful impact.",
   description:
-    "BiscoTech is a digital agency bringing design, technology, and strategy together — websites, branding, digital marketing, SEO and consulting that help businesses build a stronger presence online.",
+    "BiscoTech is a digital agency bringing design, technology, and strategy together — websites, branding, digital marketing, SEO and consulting that help businesses build a stronger presence online, plus BiscoTech Academy for practical digital skills.",
   email: CONTACT_EMAIL,
   logo: "/img/Logo.png",
   keywords: [
@@ -37,6 +37,14 @@ export const siteConfig = {
     "search engine optimisation",
     "SEO",
     "digital consulting",
+    "BiscoTech Academy",
+    "tech courses",
+    "digital skills training",
+    "product design course",
+    "front-end development course",
+    "back-end development course",
+    "full stack development course",
+    "digital marketing course",
   ],
   // Credited as the site's developer in the meta tags, structured data and humans.txt
   developer: {

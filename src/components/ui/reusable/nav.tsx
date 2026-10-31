@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Typography from "../typography";
-import { primaryButtonLinkClass } from "../button";
+import Button from "../button";
 import { usePathname } from "next/navigation";
 import { ArrowUpEnd } from "./svg";
 import { cn } from "@/lib/utils";
@@ -47,7 +47,8 @@ export default function NavLink() {
       <Link
         key={href}
         href={href}
-        className={`p-2.5 border-b ${isActive ? "border-primary-brand" : "border-transparent hover:border-primary-brand"}`}
+        // Underline grows in from the left on hover; stays full under the active page
+        className={`group relative p-2.5 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:bg-primary-brand after:transition-transform after:duration-300 after:ease-out ${isActive ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"}`}
       >
         {/* Figma: active link in brand teal, the rest in charcoal */}
         <Typography
@@ -120,7 +121,7 @@ export function MobileMenu() {
                 href={href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "rounded-[0.625rem] px-3 py-3",
+                  "rounded-[0.625rem] px-3 py-3 transition-colors duration-200",
                   isActive ? "bg-secondary-accent" : "hover:bg-secondary-accent/50",
                 )}
               >
@@ -133,14 +134,14 @@ export function MobileMenu() {
               </Link>
             );
           })}
-          <Link
+          <Button
             href="/#contact"
             onClick={() => setOpen(false)}
-            className={cn(primaryButtonLinkClass, "mt-2 sm:hidden")}
+            icon={<ArrowUpEnd />}
+            className="shrink-0 border-0 bg-primary-brand text-cards-and-sections mt-2 sm:hidden"
           >
             Let&apos;s Talk
-            <ArrowUpEnd />
-          </Link>
+          </Button>
         </nav>
       )}
     </div>

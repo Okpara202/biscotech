@@ -31,7 +31,7 @@ export default function Input({
         id={inputId}
         type={type}
         className={cn(
-          "w-full rounded-[1.25rem] border bg-transparent px-6 py-[1.125rem]",
+          "w-full rounded-[1.25rem] border bg-transparent px-6 py-[1.125rem] transition-[border-color,box-shadow] duration-300 outline-none hover:border-light-teal/60 focus:border-light-teal focus:ring-4 focus:ring-light-teal/15",
           variantStyles.body,
           "leading-7",
           className,

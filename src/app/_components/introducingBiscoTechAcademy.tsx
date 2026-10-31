@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { primaryButtonLinkClass } from "@/components/ui/button";
+import Button from "@/components/ui/button";
 import {
   ArrowUpEnd,
   DarkArrowRightUp,
@@ -15,12 +14,12 @@ const tags = [
   {
     label: "Learn digital skills",
     icon: <NorthStar />,
-    className: "top-[16.5%] left-[2.4%] rotate-10",
+    className: "top-[16.5%] left-[2.4%] rotate-10 animate-float",
   },
   {
     label: "New possibilities",
     icon: <DarkArrowRightUp />,
-    className: "top-[65%] left-[1.4%]",
+    className: "top-[65%] left-[1.4%] animate-float [animation-delay:-2.5s]",
   },
 ];
 
@@ -63,25 +62,22 @@ export default function IntroducingBiscoTechAcademy() {
           </div>
 
           {/* A link so it can open the Academy page; full width on phones */}
-          <Link
+          <Button
             href="/academy"
-            className={cn(
-              primaryButtonLinkClass,
-              "w-full bg-primary-brand text-cards-and-sections sm:w-auto",
-            )}
+            icon={<ArrowUpEnd />}
+            className="shrink-0 border-0 bg-primary-brand text-cards-and-sections w-full sm:w-auto"
           >
             Discover academy
-            <ArrowUpEnd />
-          </Link>
+          </Button>
         </div>
 
-        <div className="relative aspect-592/344 w-full max-w-xl shrink-0 overflow-hidden rounded-[1.25rem] lg:w-148 lg:max-w-none">
+        <div className="group relative aspect-592/344 w-full max-w-xl shrink-0 overflow-hidden rounded-[1.25rem] lg:w-148 lg:max-w-none">
           <Image
             src="/img/academy_image.jpg"
             alt="A smiling young man holding a laptop, learning digital skills"
             fill
             sizes="(min-width: 1024px) 592px, (min-width: 640px) 576px, 100vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
           />
 
           {tags.map((tag) => (
