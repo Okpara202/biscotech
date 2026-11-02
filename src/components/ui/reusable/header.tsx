@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import NavLink, { MobileMenu } from "./nav";
+import NavLink, { HeaderRow, MobileMenu } from "./nav";
 import Button from "../button";
 import { ArrowUpEnd } from "./svg";
 import HeaderOffset from "./headeroffset";
+import { courses } from "@/lib/courses";
 
 export default function Header() {
   return (
@@ -17,35 +18,38 @@ export default function Header() {
       className="sticky top-0 z-40 mx-auto w-full border-b border-[#000000] bg-transparent py-3 transition-[background-color,box-shadow] duration-300 data-[scrolled=true]:bg-main-background data-[scrolled=true]:bg-[linear-gradient(var(--hero-bg,transparent),var(--hero-bg,transparent))] data-[scrolled=true]:shadow-sm md:pt-4.75 md:pb-7"
     >
       <HeaderOffset />
-      {/* Figma: logo, nav and button with equal gaps between them (not a centred nav) */}
-      <div className="relative border border-[rgba(18,63,58,0.4)] page-container mx-auto flex justify-between items-center gap-6 py-3 px-3 xl:py-5">
-        {/* Header Logo */}
-        <Link href="/" aria-label="BiscoTech home" className="shrink-0">
-          <Image
-            src="/img/Logo.svg"
-            alt="BiscoTech"
-            width={60}
-            height={71}
-            className="h-auto w-12 xl:w-15"
-            priority
-          />
-        </Link>
+      {/* Course pages swap this for their simpler logo + "Back to Academy" row */}
+      <HeaderRow courseSlugs={courses.map((course) => course.slug)}>
+        {/* Figma: logo, nav and button with equal gaps between them (not a centred nav) */}
+        <div className="relative border border-[rgba(18,63,58,0.4)] page-container mx-auto flex justify-between items-center gap-6 py-3 px-3 xl:py-5">
+          {/* Header Logo */}
+          <Link href="/" aria-label="BiscoTech home" className="shrink-0">
+            <Image
+              src="/img/Logo.svg"
+              alt="BiscoTech"
+              width={60}
+              height={71}
+              className="h-auto w-12 xl:w-15"
+              priority
+            />
+          </Link>
 
-        {/* header links (desktop) */}
-        <NavLink />
+          {/* header links (desktop) */}
+          <NavLink />
 
-        <div className="flex items-center gap-2">
-          {/* cn (tailwind-merge) so "hidden" replaces the base "inline-flex" instead of fighting it */}
-          <Button
-            href="/#contact"
-            icon={<ArrowUpEnd />}
-            className="shrink-0 border-0 bg-primary-brand text-cards-and-sections hidden sm:inline-flex"
-          >
-            Let&apos;s Talk
-          </Button>
-          <MobileMenu />
+          <div className="flex items-center gap-2">
+            {/* cn (tailwind-merge) so "hidden" replaces the base "inline-flex" instead of fighting it */}
+            <Button
+              href="/#contact"
+              icon={<ArrowUpEnd />}
+              className="shrink-0 border-0 bg-primary-brand text-cards-and-sections hidden sm:inline-flex"
+            >
+              Let&apos;s Talk
+            </Button>
+            <MobileMenu />
+          </div>
         </div>
-      </div>
+      </HeaderRow>
     </header>
   );
 }

@@ -1,71 +1,7 @@
 import Button from "@/components/ui/button";
-import {
-  CodeIcon,
-  DarkArrowRightUp,
-  CommandKeyIcon,
-  LayersIcon,
-  NorthStar,
-  SmartphoneIcon,
-} from "@/components/ui/reusable/svg";
+import { DarkArrowRightUp } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
-
-// Exported so the Academy page can describe the same courses to search engines (JSON-LD)
-export const courses = [
-  {
-    tag: "01 / DESIGN",
-    icon: <NorthStar />,
-    title: "Product Design",
-    description:
-      "Learn to design thoughtful digital experiences, from understanding users to creating polished interfaces.",
-    pathway: "Beginner-friendly pathway",
-    price: "₦150,000",
-  },
-  {
-    tag: "02 / GROW",
-    icon: <DarkArrowRightUp />,
-    title: "Digital Marketing",
-    description:
-      "Explore content, social media, campaigns, and ways to measure digital marketing performance.",
-    pathway: "Practical learning pathway",
-    price: "₦80,000",
-  },
-  {
-    tag: "03 / FRONT END",
-    icon: <CodeIcon />,
-    title: "Front-End Development",
-    description:
-      "Discover how to turn interface designs into responsive, accessible websites with code.",
-    pathway: "Web development pathway",
-    price: "₦180,000",
-  },
-  {
-    tag: "04 / BACK END",
-    icon: <CommandKeyIcon />,
-    title: "Back-End Development",
-    description:
-      "Explore the server-side logic, databases, and APIs that power digital products.",
-    pathway: "Web development pathway",
-    price: "₦80,000",
-  },
-  {
-    tag: "05 / MOBILE",
-    icon: <SmartphoneIcon />,
-    title: "App Development",
-    description:
-      "Learn to design and build functional mobile applications for everyday use.",
-    pathway: "Web development pathway",
-    price: "₦280,000",
-  },
-  {
-    tag: "06 / FULL STACK",
-    icon: <LayersIcon />,
-    title: "Full stack Development",
-    description:
-      "Learn to build complete web applications, from frontend interfaces to backend systems.",
-    pathway: "Web development pathway",
-    price: "₦300,000",
-  },
-];
+import { courses } from "@/lib/courses";
 
 // Soft sage section, intro on top, then the course cards: one column on phones, two
 // from tablet (Figma: 588×540 white cards, 22px apart side to side, ~32px between rows).
@@ -126,9 +62,10 @@ export default function CourseCatalogue() {
                 </Typography>
               </div>
 
-              {/* Opens the package details (not built yet) */}
+              {/* Opens the course page (/academy/[slug]) */}
               <Button
                 variant="text"
+                href={`/academy/${course.slug}`}
                 icon={<DarkArrowRightUp />}
                 className="w-full justify-between border-0 px-0 text-primary-brand"
               >

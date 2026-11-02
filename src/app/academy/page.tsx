@@ -1,7 +1,8 @@
 import { pageMetadata, siteConfig } from "@/lib/seo";
 import AcademyHero from "./_components/academyHero";
 import TheIdeaIsSimple from "./_components/theIdeaIsSimple";
-import CourseCatalogue, { courses } from "./_components/courseCatalogue";
+import CourseCatalogue from "./_components/courseCatalogue";
+import { courses, priceValue } from "@/lib/courses";
 import LearningPhilosophy from "./_components/learningPhilosophy";
 
 export const metadata = pageMetadata({
@@ -26,13 +27,12 @@ const jsonLd = {
       "@type": "Course",
       name: course.title,
       description: course.description,
-      url: `${academyUrl}#courses`,
+      url: `${academyUrl}/${course.slug}`,
       provider: { "@id": `${siteConfig.url}/#organization` },
       offers: {
         "@type": "Offer",
         category: "Paid",
-        // "₦150,000" → "150000"
-        price: course.price.replace(/[^\d.]/g, ""),
+        price: priceValue(course.price),
         priceCurrency: "NGN",
       },
     },

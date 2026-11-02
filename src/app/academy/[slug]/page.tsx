@@ -1,0 +1,100 @@
+import { notFound } from "next/navigation";
+import BeforeFooterAction from "@/components/ui/reusable/beforeFooterAction";
+import Typography from "@/components/ui/typography";
+import { courses, getCourse, priceValue } from "@/lib/courses";
+import { pageMetadata, siteConfig } from "@/lib/seo";
+import CourseHero from "./_components/courseHero";
+import CourseExpect from "./_components/courseExpect";
+import CourseOutline from "./_components/courseOutline";
+
+// One template for every course: /academy/product-design, /academy/front-end-development...
+// Content comes from src/lib/courses.tsx. All pages are built ahead of time (static),
+// and any other /academy/<something> is a 404.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return courses.map((course) => ({ slug: course.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps<"/academy/[slug]">) {
+  const { slug } = await params;
+  const course = getCourse(slug);
+  if (!course) return {};
+  return pageMetadata({
+    title: `${course.title} Course`,
+    description: `${course.details?.intro ?? course.description} ${course.price} at BiscoTech Academy.`,
+    path: `/academy/${course.slug}`,
+  });
+}
+
+export default async function CoursePage({ params }: PageProps<"/academy/[slug]">) {
+  const { slug } = await params;
+  const course = getCourse(slug);
+  if (!course) notFound();
+  const { details } = course;
+
+  // Structured data (schema.org Course) so search engines can show the course details
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    description: details?.intro ?? course.description,
+    url: `${siteConfig.url}/academy/${course.slug}`,
+    provider: { "@id": `${siteConfig.url}/#organization` },
+    offers: {
+      "@type": "Offer",
+      category: "Paid",
+      price: priceValue(course.price),
+      priceCurrency: "NGN",
+    },
+    ...(details && { teaches: details.learn }),
+  };
+
+  return (
+    <>
+      <CourseHero course={course} />
+
+      {details ? (
+        <>
+          <CourseExpect details={details} />
+          <CourseOutline outline={details.outline} />
+        </>
+      ) : (
+        // Courses without a full package yet
+        <section className="bg-main-background pt-14 md:pt-20 lg:pt-24">
+          <div className="page-container flex flex-col items-center gap-3 text-center md:gap-4.5">
+            <Typography variant="navigation" as="p" className="text-primary-brand">
+              THE LEARNING EXPERIENCE
+            </Typography>
+            <Typography variant="section" className="max-w-xl text-primary-brand">
+              Full course package{" "}
+              <Typography variant="span-newsreader">coming soon.</Typography>
+            </Typography>
+            <Typography variant="body" className="max-w-xl text-text-charcoal">
+              We&apos;re finalising the curriculum, projects and schedule for this course.
+              Register your interest and we&apos;ll share the details as soon as they&apos;re ready.
+            </Typography>
+          </div>
+        </section>
+      )}
+
+      <section className="bg-main-background py-14 md:py-20 lg:py-24">
+        <BeforeFooterAction
+          label="READY WHEN YOU ARE"
+          title="Your next skill could open a"
+          highlight="new door."
+          titleAfter=""
+          description={`Have a question about ${course.title}, or want to save your spot? Tell us a little about yourself and we'll take it from there.`}
+          action={{ label: "Register your interest", href: "/contact" }}
+        />
+      </section>
+
+      {/* Last, not first: the header treats main's first child as the hero (globals.css).
+          "<" escaped so the JSON can't close the script tag early. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+    </>
+  );
+}

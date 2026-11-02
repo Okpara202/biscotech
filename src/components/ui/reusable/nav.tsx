@@ -1,11 +1,57 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Typography from "../typography";
 import Button from "../button";
 import { usePathname } from "next/navigation";
-import { ArrowUpEnd } from "./svg";
+import { ArrowUpEnd, BackArrow } from "./svg";
 import { cn } from "@/lib/utils";
+
+// Course pages (/academy/<course>) use Figma's simpler header: just the logo and a link back
+// to the Academy (44px above the logo, 31px below). Every other page keeps the full header,
+// passed in as children. The list of slugs means a mistyped course URL (a 404) still gets
+// the full header.
+export function HeaderRow({
+  courseSlugs,
+  children,
+}: {
+  courseSlugs: string[];
+  children: ReactNode;
+}) {
+  const pathName = usePathname();
+  const isCoursePage = courseSlugs.some((slug) => pathName === `/academy/${slug}`);
+  if (!isCoursePage) return children;
+
+  return (
+    <div className="page-container flex items-start justify-between gap-6 md:pt-6.25 md:pb-0.75">
+      <Link href="/" aria-label="BiscoTech home" className="shrink-0">
+        <Image
+          src="/img/Logo.svg"
+          alt="BiscoTech"
+          width={60}
+          height={71}
+          className="h-auto w-12 xl:w-15"
+          priority
+        />
+      </Link>
+
+      <Link
+        href="/academy#courses"
+        className="group flex items-center gap-1 text-text-charcoal transition-colors hover:text-light-teal md:gap-2"
+      >
+        <BackArrow className="size-5 transition-[translate] duration-300 motion-safe:group-hover:-translate-x-1 md:size-6" />
+        <Typography
+          variant="navButton"
+          as="span"
+          className="py-2.5 text-sm md:text-base"
+        >
+          Back to Academy
+        </Typography>
+      </Link>
+    </div>
+  );
+}
 
 export const navItems = [
   {

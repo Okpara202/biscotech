@@ -1,5 +1,50 @@
 import { cn } from "@/lib/utils";
 
+// Course page checklists (Figma: hugeicons tick-01)
+export function TickIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5 14.5C5 14.5 6.5 14.5 8.5 18C8.5 18 14.059 8.833 19 7"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke="#123F3A"
+      />
+    </svg>
+  );
+}
+
+// "Back to Academy" arrow (Figma: akar arrow-down-left turned 45° so it points left)
+export function BackArrow({ className }: { className?: string }) {
+  return (
+    <svg
+      className={cn("rotate-45", className)}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 18L18 6M16 18H6V8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke="currentColor"
+      />
+    </svg>
+  );
+}
+
 // Optional className goes on the <svg>: size classes (e.g. "size-5") override width/height,
 // and text colour classes (e.g. "text-primary-brand") recolour it, since the stroke uses
 // currentColor. Without a colour class it stays white, as before.

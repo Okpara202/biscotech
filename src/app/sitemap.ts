@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/seo";
+import { courses } from "@/lib/courses";
 
 // /sitemap.xml — tells Google which pages exist. Add new pages here as they're built
 // (Our Work isn't live yet, so it's left out to avoid 404s in Search Console).
@@ -10,6 +11,8 @@ const routes = [
   { path: "/about", priority: 0.8 },
   { path: "/our_process", priority: 0.7 },
   { path: "/contact", priority: 0.8 },
+  // One page per course, from src/lib/courses.tsx
+  ...courses.map((course) => ({ path: `/academy/${course.slug}`, priority: 0.7 })),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
