@@ -53,6 +53,37 @@ export function HeaderRow({
   );
 }
 
+// Course pages also swap the big footer (passed in as children) for Figma's small row:
+// copyright and a link back to the Academy.
+export function FooterRow({
+  courseSlugs,
+  children,
+}: {
+  courseSlugs: string[];
+  children: ReactNode;
+}) {
+  const pathName = usePathname();
+  const isCoursePage = courseSlugs.some((slug) => pathName === `/academy/${slug}`);
+  if (!isCoursePage) return children;
+
+  return (
+    <footer className="bg-main-background pb-5.5">
+      <div className="page-container flex flex-wrap items-center justify-center gap-x-0.75 lg:justify-start">
+        <Typography variant="body" as="p" className="text-text-charcoal">
+          &copy; {new Date().getFullYear()} BiscoTech Academy
+        </Typography>
+        <Button
+          variant="text"
+          href="/academy"
+          className="rounded-none border-0 border-b border-primary-brand text-primary-brand"
+        >
+          Return to academy
+        </Button>
+      </div>
+    </footer>
+  );
+}
+
 export const navItems = [
   {
     href: "/",

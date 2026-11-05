@@ -37,14 +37,16 @@ export default function BeforeFooterAction({
 }: BeforeFooterActionProps) {
   return (
     // Phones/tablets: stacked and centred. Laptop+: text left, button right (Figma: 64px top/
-    // bottom, 81px sides, button vertically centred). justify-between spaces them — no fixed gap.
+    // bottom, 81px sides, button vertically centred). From 1440px it's Figma's exact layout: a
+    // 629px text block, then the button 163px after it. Narrower laptops have no room for that
+    // gap, so the two are just spaced apart.
     <div
       className={cn(
-        "page-container tech-glow flex flex-col items-center gap-8 rounded-[1.25rem] bg-primary-brand px-5 py-10 text-center md:px-10 md:py-14 lg:flex-row lg:justify-between lg:gap-10 lg:px-20.25 lg:py-16 lg:text-left",
+        "page-container tech-glow flex flex-col items-center gap-8 rounded-[1.25rem] bg-primary-brand px-5 py-10 text-center md:px-10 md:py-14 lg:flex-row lg:justify-between lg:gap-10 lg:px-20.25 lg:py-16 lg:text-left min-[90rem]:justify-start min-[90rem]:gap-40.75",
         className,
       )}
     >
-      <div className="flex flex-col items-center gap-3 md:gap-4.5 lg:items-start lg:gap-6">
+      <div className="flex flex-col items-center gap-3 md:gap-4.5 lg:items-start lg:gap-6 min-[90rem]:w-157.25 min-[90rem]:shrink-0">
         <Typography className="text-secondary-accent" variant="text" as="p">
           {label}
         </Typography>
@@ -71,7 +73,7 @@ export default function BeforeFooterAction({
         </Typography>
 
         {description && (
-          <Typography variant="body" className="max-w-xl text-secondary-accent">
+          <Typography variant="body" className="max-w-xl text-cards-and-sections lg:max-w-138.5">
             {description}
           </Typography>
         )}

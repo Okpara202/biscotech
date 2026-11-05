@@ -57,7 +57,7 @@ export default function CourseCatalogue() {
                 <Typography variant="body" className="text-text-charcoal">
                   {course.pathway}
                 </Typography>
-                {SHOW_PRICES && (
+                {SHOW_PRICES && course.price && (
                   <Typography variant="cardHeading" as="p" className="font-medium text-text-charcoal">
                     {course.price}
                   </Typography>

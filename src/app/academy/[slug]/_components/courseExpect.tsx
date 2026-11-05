@@ -1,17 +1,35 @@
 import { TickIcon } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
-import type { CourseDetails } from "@/lib/courses";
+import type { SectionOf } from "@/lib/courses";
 import { cn } from "@/lib/utils";
+import CourseSectionHeading, { sectionTones } from "./courseSectionHeading";
 
-// White card with a title and a ticked list, sage lines between the rows (Figma: 586px wide,
-// 25px top/bottom, 37px sides, each row 24px top/bottom). With a note below the list, the
-// last row keeps its line to separate the two.
-function Checklist({ title, items, note }: { title: string; items: string[]; note?: string }) {
+// White card with an optional title and a ticked list, sage lines between the rows (Figma:
+// 586px wide, 25px top/bottom, 37px sides, each row 24px top/bottom). With a note below the
+// list, the last row keeps its line to separate the two.
+export function Checklist({
+  title,
+  items,
+  note,
+  className,
+}: {
+  title?: string;
+  items: string[];
+  note?: string;
+  className?: string;
+}) {
   return (
-    <div className="flex flex-col gap-3 rounded-[1.25rem] bg-cards-and-sections px-5 py-6 md:px-6 lg:gap-6.5 lg:px-9.25 lg:py-6.25">
-      <Typography variant="cardHeading" as="h3" className="text-black">
-        {title}
-      </Typography>
+    <div
+      className={cn(
+        "flex flex-col gap-3 rounded-[1.25rem] bg-cards-and-sections px-5 py-6 md:px-6 lg:gap-6.5 lg:px-9.25 lg:py-6.25",
+        className,
+      )}
+    >
+      {title && (
+        <Typography variant="cardHeading" as="h3" className="text-black">
+          {title}
+        </Typography>
+      )}
 
       <ul>
         {items.map((item) => (
@@ -23,7 +41,8 @@ function Checklist({ title, items, note }: { title: string; items: string[]; not
             )}
           >
             <TickIcon className="size-5 shrink-0 lg:size-6" />
-            <Typography variant="body" as="span" className="text-black">
+            {/* Figma: long rows may run a little past the divider, into the card's padding */}
+            <Typography variant="body" as="span" className="text-black lg:-mr-6">
               {item}
             </Typography>
           </li>
@@ -39,30 +58,42 @@ function Checklist({ title, items, note }: { title: string; items: string[]; not
   );
 }
 
-// "What should you expect?": intro on top (612px), then the two checklists side by side from
-// tablet, stretched to the same height (Figma: 26px apart, 30px below the intro).
-export default function CourseExpect({ details }: { details: CourseDetails }) {
-  return (
-    // id: the hero's "View learning package" button jumps here
-    <section id="learning-package" className="bg-main-background py-14 md:py-20 lg:py-24">
-      <div className="page-container flex flex-col gap-8 md:gap-10 lg:gap-7.5">
-        <div className="mx-auto flex max-w-xl flex-col items-center gap-4 text-center md:gap-5.5 lg:mx-0 lg:max-w-153 lg:items-start lg:text-left">
-          <div className="flex flex-col items-center gap-3 lg:items-start">
-            <Typography variant="navigation" as="p" className="text-primary-brand">
-              THE LEARNING EXPERIENCE
-            </Typography>
-            <Typography variant="section" className="text-primary-brand">
-              What should you expect?
-            </Typography>
-          </div>
-          <Typography variant="largeBody" as="p" className="text-primary-brand">
-            {details.expect}
-          </Typography>
-        </div>
+// "What should you expect?". With an audience list: intro on top, then the two checklists side
+// by side from tablet at the same height (Figma: 26px apart, 30px below the intro). Without
+// one: intro and the single checklist side by side on laptop+ (Figma: Python).
+export default function CourseExpect({ section }: { section: SectionOf<"expect"> }) {
+  const heading = (
+    <CourseSectionHeading
+      label={section.label}
+      title={section.title}
+      intro={section.intro}
+      // Figma: 556px when it sits beside the list
+      introClassName={section.audience ? undefined : "lg:max-w-139"}
+    />
+  );
 
+  if (!section.audience) {
+    return (
+      <section className={sectionTones.cream}>
+        <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:flex-row lg:items-start lg:justify-between">
+          {heading}
+          <Checklist
+            title="What you'll learn"
+            items={section.learn}
+            className="w-full max-w-xl lg:max-w-146.5 lg:shrink-0 lg:basis-146.5"
+          />
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className={sectionTones.cream}>
+      <div className="page-container flex flex-col gap-8 md:gap-10 lg:gap-7.5">
+        {heading}
         <div className="reveal-children grid gap-5 md:grid-cols-2 lg:gap-6.5">
-          <Checklist title="What you'll learn" items={details.learn} />
-          <Checklist title="Who this course is for" items={details.audience} note={details.audienceNote} />
+          <Checklist title="What you'll learn" items={section.learn} />
+          <Checklist title="Who this course is for" items={section.audience} note={section.audienceNote} />
         </div>
       </div>
     </section>

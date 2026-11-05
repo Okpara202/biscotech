@@ -2,11 +2,11 @@ import { notFound } from "next/navigation";
 import BeforeFooterAction from "@/components/ui/reusable/beforeFooterAction";
 import JsonLd from "@/components/ui/reusable/jsonLd";
 import Typography from "@/components/ui/typography";
-import { courseOffer, courses, getCourse } from "@/lib/courses";
+import { courseOffer, courses, getCourse, type Course } from "@/lib/courses";
 import { organizationRef, pageJsonLd, pageMetadata, siteConfig } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 import CourseHero from "./_components/courseHero";
-import CourseExpect from "./_components/courseExpect";
-import CourseOutline from "./_components/courseOutline";
+import CourseSectionView from "./_components/courseSections";
 
 // One template for every course: /academy/product-design, /academy/front-end-development...
 // Content comes from src/lib/courses.tsx. All pages are built ahead of time (static),
@@ -17,13 +17,19 @@ export function generateStaticParams() {
   return courses.map((course) => ({ slug: course.slug }));
 }
 
+// The hero intro when it fits in a search result (160 characters), else the shorter card text
+function seoDescription(course: Course) {
+  const intro = course.details?.intro;
+  return intro && intro.length <= 160 ? intro : course.description;
+}
+
 export async function generateMetadata({ params }: PageProps<"/academy/[slug]">) {
   const { slug } = await params;
   const course = getCourse(slug);
   if (!course) return {};
   return pageMetadata({
     title: `${course.title} Course`,
-    description: course.details?.intro ?? course.description,
+    description: seoDescription(course),
     path: `/academy/${course.slug}`,
   });
 }
@@ -36,7 +42,8 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
 
   // Structured data so search engines can show the course details and breadcrumb
   const path = `/academy/${course.slug}`;
-  const description = details?.intro ?? course.description;
+  const description = seoDescription(course);
+  const expect = details?.sections.find((section) => section.type === "expect");
   const jsonLd = pageJsonLd({
     name: course.title,
     description,
@@ -51,7 +58,7 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
         inLanguage: "en",
         provider: organizationRef,
         ...courseOffer(course),
-        ...(details && { teaches: details.learn }),
+        ...(expect && { teaches: expect.learn }),
       },
     ],
   });
@@ -61,10 +68,10 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
       <CourseHero course={course} />
 
       {details ? (
-        <>
-          <CourseExpect details={details} />
-          <CourseOutline outline={details.outline} />
-        </>
+        // Keyed by type and position: Figma repeats some headings within a page
+        details.sections.map((section, index) => (
+          <CourseSectionView key={`${section.type}-${index}`} section={section} />
+        ))
       ) : (
         // Courses without a full package yet
         <section className="bg-main-background pt-14 md:pt-20 lg:pt-24">
@@ -84,15 +91,32 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
         </section>
       )}
 
-      <section className="bg-main-background py-14 md:py-20 lg:py-24">
-        <BeforeFooterAction
-          label="READY WHEN YOU ARE"
-          title="Your next skill could open a"
-          highlight="new door."
-          titleAfter=""
-          description={`Have a question about ${course.title}, or want to save your spot? Tell us a little about yourself and we'll take it from there.`}
-          action={{ label: "Register your interest", href: "/contact" }}
-        />
+      <section
+        className={cn(
+          "bg-main-background py-14 md:py-20 lg:py-24",
+          details?.closeFooter && "lg:pb-6.75",
+        )}
+      >
+        {details ? (
+          <BeforeFooterAction
+            label={details.cta.label}
+            title={details.cta.title}
+            highlight=""
+            titleAfter=""
+            description={details.cta.description}
+            action={{ label: details.cta.action, href: "/contact" }}
+          />
+        ) : (
+          // Courses without a full package yet
+          <BeforeFooterAction
+            label="READY WHEN YOU ARE"
+            title="Your next skill could open a"
+            highlight="new door."
+            titleAfter=""
+            description={`Have a question about ${course.title}, or want to save your spot? Tell us a little about yourself and we'll take it from there.`}
+            action={{ label: "Register your interest", href: "/contact" }}
+          />
+        )}
       </section>
 
       <JsonLd data={jsonLd} />

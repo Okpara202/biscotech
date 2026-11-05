@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "../typography";
+import { FooterRow } from "./nav";
+import { courses } from "@/lib/courses";
 
 const footerLinks = [
   { href: "/services", label: "Services" },
@@ -12,6 +14,8 @@ const footerLinks = [
 
 export default function Footer() {
   return (
+    // Course pages swap this for their small copyright row
+    <FooterRow courseSlugs={courses.map((course) => course.slug)}>
     <footer className="bg-primary-brand pt-8 pb-4 text-cards-and-sections md:pt-10.25 md:pb-4.5">
       <div className="mx-auto page-container">
         <div className="flex flex-col items-center gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
@@ -70,5 +74,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </FooterRow>
   );
 }
