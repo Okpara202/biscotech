@@ -1,10 +1,13 @@
-import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/ui/reusable/jsonLd";
+import { pageJsonLd, pageMetadata } from "@/lib/seo";
 import ContactHero from "./_components/contactHero";
 
+const description =
+  "Visit BiscoTech in Independence Layout, Enugu, call +234 707 6546 314, or tell us about your project and let's start a conversation.";
+
 export const metadata = pageMetadata({
-  title: "Contact",
-  description:
-    "Have a project in mind or need a clearer digital direction? Tell BiscoTech a little about it and let's start a conversation.",
+  title: "Contact Us: Start Your Project",
+  description,
   path: "/contact",
 });
 
@@ -12,6 +15,7 @@ export default function ContactPage() {
   return (
     <>
       <ContactHero />
+      <JsonLd data={pageJsonLd({ type: "ContactPage", name: "Contact", description, path: "/contact" })} />
     </>
   );
 }

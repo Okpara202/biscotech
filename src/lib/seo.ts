@@ -1,32 +1,43 @@
 import type { Metadata } from "next";
 import { CONTACT_EMAIL } from "@/components/ui/reusable/inquiry";
 
-// The site's address, used for canonical URLs, the sitemap and the preview card.
-// - `next dev`: localhost, so links work while developing.
-// - On Vercel: the project's production address, which Vercel gives every build
-//   automatically (nothing to set up). It's the .vercel.app address until a custom domain
-//   is connected, then biscotech.org on the next deploy. Previews use it too, so Google
-//   only ever indexes the production site.
-// - Anywhere else: biscotech.org.
-const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+// The site's address, used for canonical URLs, the sitemap, structured data and the preview
+// cards. `next dev` uses localhost so links work while developing; every real build, Vercel
+// previews included, points at the live domain so Google only ever indexes that.
 const siteUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
-    : vercelUrl
-      ? `https://${vercelUrl}`
-      : "https://biscotech.org";
+    : "https://www.biscotech.org";
 
 export const siteConfig = {
   name: "BiscoTech",
-  url: siteUrl.replace(/\/$/, ""),
+  url: siteUrl,
+  // Home page <title>: what the business does, for people scanning search results
+  title: "BiscoTech | Web Design, Branding & Marketing Agency in Enugu",
   tagline: "Thoughtful design. Meaningful impact.",
+  // Kept under 160 characters so search results don't cut it off
   description:
-    "BiscoTech is a digital agency bringing design, technology, and strategy together — websites, branding, digital marketing, SEO and consulting that help businesses build a stronger presence online, plus BiscoTech Academy for practical digital skills.",
+    "BiscoTech is a digital agency in Enugu, Nigeria, for web and app development, branding, digital marketing and SEO, with an Academy teaching digital skills.",
   email: CONTACT_EMAIL,
-  logo: "/img/Logo.png",
+  // Shown on the Contact page and used in the structured data. Keep them identical everywhere.
+  phone: { display: "+234 707 6546 314", tel: "+2347076546314" },
+  address: {
+    street: "No. 8 Anjali Crescent, Independence Layout",
+    city: "Enugu",
+    state: "Enugu State",
+    countryCode: "NG",
+    country: "Nigeria",
+  },
+  socials: ["https://www.instagram.com/bisco.tech/"],
+  // Google needs a logo of at least 112×112px; Logo.png is only 60×71
+  logo: "/img/LogoLarge.png",
   keywords: [
     "BiscoTech",
     "digital agency",
+    "digital agency in Enugu",
+    "web design Enugu",
+    "digital marketing Enugu",
+    "tech training Enugu",
     "web design",
     "website development",
     "app development",
@@ -53,12 +64,12 @@ export const siteConfig = {
   },
 } as const;
 
-// Shared preview image (src/app/opengraph-image.tsx)
-const ogImage = {
-  url: "/opengraph-image",
-  width: 1200,
-  height: 630,
-  alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+/** Points structured data at the Organization defined in the layout */
+export const organizationRef = {
+  "@type": "Organization",
+  "@id": `${siteConfig.url}/#organization`,
+  name: siteConfig.name,
+  url: siteConfig.url,
 };
 
 type PageSeo = {
@@ -71,11 +82,16 @@ type PageSeo = {
 
 // Next merges metadata shallowly, so a page that sets openGraph/twitter replaces the
 // layout's ones completely. This builds the full set per page so every link still gets
-// the preview card, the right title/description and a canonical URL.
+// a preview card (the opengraph-image.tsx next to the page), the right title/description
+// and a canonical URL.
 export function pageMetadata({ title, description, path }: PageSeo): Metadata {
-  const fullTitle = title
-    ? `${title} | ${siteConfig.name}`
-    : `${siteConfig.name} — ${siteConfig.tagline}`;
+  const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
+  const image = {
+    url: `${path === "/" ? "" : path}/opengraph-image`,
+    width: 1200,
+    height: 630,
+    alt: fullTitle,
+  };
 
   return {
     ...(title && { title }),
@@ -88,13 +104,73 @@ export function pageMetadata({ title, description, path }: PageSeo): Metadata {
       url: path,
       title: fullTitle,
       description,
-      images: [ogImage],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [ogImage],
+      images: [image],
     },
+  };
+}
+
+type PageJsonLd = {
+  /** schema.org page type */
+  type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+  /** Short page name, used in Google's breadcrumb trail, e.g. "Services" */
+  name: string;
+  description: string;
+  path: string;
+  /** Pages between Home and this one in the breadcrumb */
+  parents?: { name: string; path: string }[];
+  /** Anything else this page describes (services, courses...) */
+  extra?: object[];
+};
+
+// Structured data for one page: what kind of page it is and, except on the home page, the
+// breadcrumb Google can show instead of the raw URL. Render with <JsonLd />.
+export function pageJsonLd({
+  type = "WebPage",
+  name,
+  description,
+  path,
+  parents = [],
+  extra = [],
+}: PageJsonLd) {
+  const isHome = path === "/";
+  const url = isHome ? siteConfig.url : `${siteConfig.url}${path}`;
+  const crumbs = [{ name: "Home", path: "" }, ...parents, { name, path }];
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": type,
+        "@id": `${url}/#webpage`,
+        url,
+        name,
+        description,
+        inLanguage: "en",
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        about: { "@id": `${siteConfig.url}/#organization` },
+        ...(!isHome && { breadcrumb: { "@id": `${url}/#breadcrumb` } }),
+      },
+      ...(isHome
+        ? []
+        : [
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${url}/#breadcrumb`,
+              itemListElement: crumbs.map((crumb, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: crumb.name,
+                item: `${siteConfig.url}${crumb.path}`,
+              })),
+            },
+          ]),
+      ...extra,
+    ],
   };
 }

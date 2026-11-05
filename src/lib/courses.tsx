@@ -12,6 +12,10 @@ import {
 // course page (/academy/[slug]), the sitemap and the SEO data are all built from this list,
 // so adding a course = adding one entry. No backend needed.
 
+/** Prices are hidden across the Academy for now (cards, course pages, SEO data). They stay in
+ *  the list below: set this back to true to show them everywhere again. */
+export const SHOW_PRICES = false;
+
 export type CourseModule = {
   /** e.g. "Weeks 1–2" */
   weeks: string;
@@ -163,7 +167,16 @@ export function getCourse(slug: string) {
   return courses.find((course) => course.slug === slug);
 }
 
-/** "₦150,000" → "150000" (for structured data) */
-export function priceValue(price: string) {
-  return price.replace(/[^\d.]/g, "");
+/** The price part of a course's structured data; nothing while prices are hidden */
+export function courseOffer(course: Course) {
+  if (!SHOW_PRICES) return {};
+  return {
+    offers: {
+      "@type": "Offer",
+      category: "Paid",
+      // "₦150,000" → "150000"
+      price: course.price.replace(/[^\d.]/g, ""),
+      priceCurrency: "NGN",
+    },
+  };
 }

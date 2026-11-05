@@ -1,6 +1,7 @@
 import Typography, { variantStyles } from "@/components/ui/typography";
 import { DarkArrowRightUp } from "@/components/ui/reusable/svg";
 import { CONTACT_EMAIL } from "@/components/ui/reusable/inquiry";
+import { siteConfig } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import ContactForm from "./contactForm";
 
@@ -56,6 +57,29 @@ export default function ContactHero() {
                 {CONTACT_EMAIL}
                 <DarkArrowRightUp />
               </a>
+            </li>
+            <li className="flex flex-col items-center gap-1 border-b border-secondary-accent py-6 lg:items-start lg:gap-3 lg:py-10">
+              <Typography variant="primaryButton" as="p" className="text-primary-brand">
+                PHONE
+              </Typography>
+              <a
+                href={`tel:${siteConfig.phone.tel}`}
+                className={cn(
+                  "inline-flex items-center gap-2 py-3 text-primary-brand",
+                  variantStyles.primaryButton,
+                )}
+              >
+                {siteConfig.phone.display}
+                <DarkArrowRightUp />
+              </a>
+            </li>
+            <li className="flex flex-col items-center gap-2 border-b border-secondary-accent py-6 lg:items-start lg:gap-3 lg:py-10">
+              <Typography variant="primaryButton" as="p" className="text-primary-brand">
+                VISIT US
+              </Typography>
+              <Typography variant="text" as="address" className="not-italic text-text-charcoal">
+                {siteConfig.address.street}, {siteConfig.address.city}, {siteConfig.address.country}
+              </Typography>
             </li>
             {details.map((detail) => (
               <li

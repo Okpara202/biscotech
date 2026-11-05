@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
 
-const services = [
+// Exported so the Services page can describe the same services to search engines (JSON-LD)
+export const services = [
   {
     icon: <WeDoArrowUp />,
     title: "Website & App Development",

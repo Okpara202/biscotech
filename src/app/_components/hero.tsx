@@ -90,7 +90,7 @@ export default function Hero() {
           <Image
             className="h-auto w-full max-w-160.75 shrink-0 lg:ml-[-1.67%] lg:mr-[-8.25%] lg:w-[53.55%] lg:max-w-none"
             src="/img/heroImage.svg"
-            alt="an image of people learning on their pc"
+            alt="People working together on their laptops"
             width={642.6}
             height={544}
           />

@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import BeforeFooterAction from "@/components/ui/reusable/beforeFooterAction";
+import JsonLd from "@/components/ui/reusable/jsonLd";
 import Typography from "@/components/ui/typography";
-import { courses, getCourse, priceValue } from "@/lib/courses";
-import { pageMetadata, siteConfig } from "@/lib/seo";
+import { courseOffer, courses, getCourse } from "@/lib/courses";
+import { organizationRef, pageJsonLd, pageMetadata, siteConfig } from "@/lib/seo";
 import CourseHero from "./_components/courseHero";
 import CourseExpect from "./_components/courseExpect";
 import CourseOutline from "./_components/courseOutline";
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: PageProps<"/academy/[slug]">)
   if (!course) return {};
   return pageMetadata({
     title: `${course.title} Course`,
-    description: `${course.details?.intro ?? course.description} ${course.price} at BiscoTech Academy.`,
+    description: course.details?.intro ?? course.description,
     path: `/academy/${course.slug}`,
   });
 }
@@ -33,22 +34,27 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
   if (!course) notFound();
   const { details } = course;
 
-  // Structured data (schema.org Course) so search engines can show the course details
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Course",
+  // Structured data so search engines can show the course details and breadcrumb
+  const path = `/academy/${course.slug}`;
+  const description = details?.intro ?? course.description;
+  const jsonLd = pageJsonLd({
     name: course.title,
-    description: details?.intro ?? course.description,
-    url: `${siteConfig.url}/academy/${course.slug}`,
-    provider: { "@id": `${siteConfig.url}/#organization` },
-    offers: {
-      "@type": "Offer",
-      category: "Paid",
-      price: priceValue(course.price),
-      priceCurrency: "NGN",
-    },
-    ...(details && { teaches: details.learn }),
-  };
+    description,
+    path,
+    parents: [{ name: "Academy", path: "/academy" }],
+    extra: [
+      {
+        "@type": "Course",
+        name: course.title,
+        description,
+        url: `${siteConfig.url}${path}`,
+        inLanguage: "en",
+        provider: organizationRef,
+        ...courseOffer(course),
+        ...(details && { teaches: details.learn }),
+      },
+    ],
+  });
 
   return (
     <>
@@ -89,12 +95,7 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
         />
       </section>
 
-      {/* Last, not first: the header treats main's first child as the hero (globals.css).
-          "<" escaped so the JSON can't close the script tag early. */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={jsonLd} />
     </>
   );
 }

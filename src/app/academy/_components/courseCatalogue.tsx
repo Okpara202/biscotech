@@ -1,7 +1,7 @@
 import Button from "@/components/ui/button";
 import { DarkArrowRightUp } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
-import { courses } from "@/lib/courses";
+import { courses, SHOW_PRICES } from "@/lib/courses";
 
 // Soft sage section, intro on top, then the course cards: one column on phones, two
 // from tablet (Figma: 588×540 white cards, 22px apart side to side, ~32px between rows).
@@ -57,9 +57,11 @@ export default function CourseCatalogue() {
                 <Typography variant="body" className="text-text-charcoal">
                   {course.pathway}
                 </Typography>
-                <Typography variant="cardHeading" as="p" className="font-medium text-text-charcoal">
-                  {course.price}
-                </Typography>
+                {SHOW_PRICES && (
+                  <Typography variant="cardHeading" as="p" className="font-medium text-text-charcoal">
+                    {course.price}
+                  </Typography>
+                )}
               </div>
 
               {/* Opens the course page (/academy/[slug]) */}

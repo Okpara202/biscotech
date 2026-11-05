@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Inter, Manrope, Newsreader } from "next/font/google";
 import Header from "@/components/ui/reusable/header";
 import Footer from "@/components/ui/reusable/footer";
+import JsonLd from "@/components/ui/reusable/jsonLd";
 import { pageMetadata, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   // Pages set just their name ("Services") and get "Services | BiscoTech"
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: siteConfig.title,
     template: `%s | ${siteConfig.name}`,
   },
   applicationName: siteConfig.name,
@@ -73,13 +74,33 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      // A local business with a physical space, so it can appear in local results
+      "@type": "ProfessionalService",
       "@id": `${siteConfig.url}/#organization`,
       name: siteConfig.name,
       url: siteConfig.url,
       logo: `${siteConfig.url}${siteConfig.logo}`,
+      image: `${siteConfig.url}${siteConfig.logo}`,
       email: siteConfig.email,
+      telephone: siteConfig.phone.tel,
       description: siteConfig.description,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteConfig.address.street,
+        addressLocality: siteConfig.address.city,
+        addressRegion: siteConfig.address.state,
+        addressCountry: siteConfig.address.countryCode,
+      },
+      sameAs: [...siteConfig.socials],
+      knowsAbout: [
+        "Web design",
+        "Website and app development",
+        "Branding and visual identity",
+        "Digital marketing",
+        "Social media management",
+        "Search engine optimisation",
+        "Digital skills training",
+      ],
     },
     {
       "@type": "Person",
@@ -110,13 +131,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${manrope.variable} ${dmSans.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <script
-          type="application/ld+json"
-          // "<" escaped so the JSON can't close the script tag early
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={jsonLd} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

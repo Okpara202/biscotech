@@ -1,7 +1,7 @@
 import Button from "@/components/ui/button";
 import { ArrowUpEnd } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
-import type { Course } from "@/lib/courses";
+import { SHOW_PRICES, type Course } from "@/lib/courses";
 
 // Course name in capitals with the last word in teal: PRODUCT DESIGN
 function CourseName({ title }: { title: string }) {
@@ -70,20 +70,24 @@ export default function CourseHero({ course }: { course: Course }) {
             </div>
           </div>
 
-          {/* Fee card (Figma: 464px wide, 48px sides, 40px top/bottom, 10px corners) */}
+          {/* Fee card (Figma: 464px wide, 48px sides, 40px top/bottom, 10px corners). Left out
+              entirely when it'd be empty: prices hidden and no course facts yet. */}
+          {(SHOW_PRICES || facts.length > 0) && (
           <div className="flex w-full max-w-md flex-col gap-6 rounded-[0.625rem] bg-cards-and-sections px-6 py-7 text-left md:px-9 md:py-9 lg:max-w-none lg:flex-[0_1_29rem] lg:px-8 lg:py-10 xl:px-12">
-            <div className="flex flex-col gap-2.5">
-              <Typography variant="primaryButton" as="p" className="text-text-charcoal">
-                Course fee
-              </Typography>
-              <Typography variant="subHeading" as="p" className="text-primary-brand">
-                {course.price}
-              </Typography>
-            </div>
+            {SHOW_PRICES && (
+              <div className="flex flex-col gap-2.5 pb-6">
+                <Typography variant="primaryButton" as="p" className="text-text-charcoal">
+                  Course fee
+                </Typography>
+                <Typography variant="subHeading" as="p" className="text-primary-brand">
+                  {course.price}
+                </Typography>
+              </div>
+            )}
 
             {facts.length > 0 && (
               // Second column starts 170px in, 36px between the rows (Figma)
-              <dl className="grid grid-cols-2 gap-x-4 gap-y-6 pt-6 lg:grid-cols-[10.625rem_1fr] lg:gap-x-0 lg:gap-y-9">
+              <dl className="grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-[10.625rem_1fr] lg:gap-x-0 lg:gap-y-9">
                 {facts.map((fact) => (
                   <div key={fact.label} className="flex flex-col gap-1.5 lg:gap-3.5">
                     {/* Value first visually, but the label is the <dt> for screen readers */}
@@ -102,6 +106,7 @@ export default function CourseHero({ course }: { course: Course }) {
               </dl>
             )}
           </div>
+          )}
         </div>
       </div>
     </section>
