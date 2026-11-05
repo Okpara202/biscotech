@@ -6,6 +6,9 @@ import { ArrowUpEnd } from "./svg";
 import HeaderOffset from "./headeroffset";
 import { courses } from "@/lib/courses";
 
+// Just the names and links for the Academy menus, so the course data stays on the server
+const navCourses = courses.map(({ slug, title }) => ({ slug, title }));
+
 export default function Header() {
   return (
     // Sticky. At the top of the page it's transparent, showing the hero behind it
@@ -35,7 +38,7 @@ export default function Header() {
           </Link>
 
           {/* header links (desktop) */}
-          <NavLink />
+          <NavLink courses={navCourses} />
 
           <div className="flex items-center gap-2">
             {/* cn (tailwind-merge) so "hidden" replaces the base "inline-flex" instead of fighting it */}
@@ -46,7 +49,7 @@ export default function Header() {
             >
               Let&apos;s Talk
             </Button>
-            <MobileMenu />
+            <MobileMenu courses={navCourses} />
           </div>
         </div>
       </HeaderRow>

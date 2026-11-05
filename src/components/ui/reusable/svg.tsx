@@ -1,5 +1,28 @@
 import { cn } from "@/lib/utils";
 
+// Small down arrow for menus; rotate it (rotate-180) to point up when the menu is open
+export function ChevronDown({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 6L8 10L12 6"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        stroke="currentColor"
+      />
+    </svg>
+  );
+}
+
 // Course page checklists (Figma: hugeicons tick-01)
 export function TickIcon({ className }: { className?: string }) {
   return (

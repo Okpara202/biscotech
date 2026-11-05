@@ -7,6 +7,7 @@ import {
   NorthStar,
   SmartphoneIcon,
 } from "@/components/ui/reusable/svg";
+import { appDevelopment } from "./app-development";
 import { backEnd } from "./back-end";
 import { digitalMarketing } from "./digital-marketing";
 import { frontEnd } from "./front-end";
@@ -62,10 +63,12 @@ export type CourseSection =
       compact?: boolean;
       /** Lay each card's topics out in two columns */
       topicColumns?: 2;
+      /** Figma's shorter cards (about 404px), for stages with no description or project */
+      shortCards?: boolean;
       stages: {
         label: string;
         title: string;
-        description: string;
+        description?: string;
         topics: string[];
         /** Shown as "Practical projects: ..." */
         project?: string;
@@ -198,6 +201,7 @@ export const courses: Course[] = [
       "Learn to design and build functional mobile applications for everyday use.",
     pathway: "Web development pathway",
     price: "₦280,000",
+    details: appDevelopment,
   },
   {
     slug: "full-stack-development",

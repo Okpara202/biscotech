@@ -41,7 +41,12 @@ export default function CourseHero({ course }: { course: Course }) {
             <div className="flex flex-col gap-3 lg:gap-2">
               <CourseName title={details?.heroTitle ?? course.title} />
 
-              <Typography variant="largeBody" as="p" className="text-primary-brand">
+              {/* pre-line: a \n in the intro starts a new line, as in some Figma heroes */}
+              <Typography
+                variant="largeBody"
+                as="p"
+                className="whitespace-pre-line text-primary-brand"
+              >
                 {details?.intro ?? course.description}
               </Typography>
             </div>

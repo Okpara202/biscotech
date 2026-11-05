@@ -48,14 +48,17 @@ export default function CourseStages({ section }: { section: SectionOf<"stages">
               key={stage.label}
               className={cn(
                 "flex flex-col gap-6 rounded-[0.625rem] bg-cards-and-sections px-5 py-6",
-                section.topicColumns && "lg:gap-5",
-                // Figma: two-column topics 606px tall, 38px down; other compact cards 701px
-                // tall, 74px down, both 53px in; the rest fit their text with 44px sides
+                (section.topicColumns || section.shortCards) && "lg:gap-5",
+                // Figma: two-column topics 606px tall, 38px down; short cards 404px tall,
+                // 61px down, 44px in; other compact cards 701px tall, 74px down, both 53px
+                // in; the rest fit their text with 44px sides
                 section.topicColumns
                   ? "lg:min-h-151.5 lg:px-13.25 lg:pt-9.5 lg:pb-4"
-                  : section.compact
-                    ? "lg:min-h-175.25 lg:px-13.25 lg:pt-18.5 lg:pb-8"
-                    : "lg:px-11 lg:py-7.25",
+                  : section.shortCards
+                    ? "lg:min-h-101 lg:px-11 lg:pt-15.25 lg:pb-8"
+                    : section.compact
+                      ? "lg:min-h-175.25 lg:px-13.25 lg:pt-18.5 lg:pb-8"
+                      : "lg:px-11 lg:py-7.25",
                 stage.wide && "lg:pr-px",
               )}
             >
@@ -67,12 +70,14 @@ export default function CourseStages({ section }: { section: SectionOf<"stages">
                   {stage.title}
                 </Typography>
                 {/* Figma: text 446px wide, topics 472px, unless the card is `wide` */}
-                <Typography
-                  variant="body"
-                  className={cn("text-text-charcoal", !stage.wide && "lg:max-w-111.5")}
-                >
-                  {stage.description}
-                </Typography>
+                {stage.description && (
+                  <Typography
+                    variant="body"
+                    className={cn("text-text-charcoal", !stage.wide && "lg:max-w-111.5")}
+                  >
+                    {stage.description}
+                  </Typography>
+                )}
               </div>
 
               <ul
