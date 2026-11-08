@@ -29,7 +29,7 @@ export default function LittleAboutBisco() {
           {/* Intro */}
           <div className="flex flex-col gap-4 text-center md:gap-8.5 lg:w-155.75 lg:text-left">
             <Typography variant="navigation" className="text-primary-brand">
-              03 / A LITTLE ABOUT BISCO
+              02 / A LITTLE ABOUT BISCO
             </Typography>
             <Typography variant="section" className="text-primary-brand">
               Good businesses deserve an{" "}
@@ -81,8 +81,8 @@ export default function LittleAboutBisco() {
 
         <div className="relative aspect-1200/658 w-full overflow-hidden rounded-sm">
           <Image
-            src="/img/about-team.png"
-            alt="The BiscoTech team working together around a shared table"
+            src="/img/team-meeting.png"
+            alt="A team meeting around a table in a bright office"
             fill
             sizes="(min-width: 1440px) 75rem, 83vw"
             className="object-cover"

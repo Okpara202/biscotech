@@ -7,6 +7,7 @@ import { organizationRef, pageJsonLd, pageMetadata, siteConfig } from "@/lib/seo
 import { cn } from "@/lib/utils";
 import CourseHero from "./_components/courseHero";
 import CourseSectionView from "./_components/courseSections";
+import { emphasisParts } from "./_components/emphasis";
 
 // One template for every course: /academy/product-design, /academy/front-end-development...
 // Content comes from src/lib/courses.tsx. All pages are built ahead of time (static),
@@ -15,6 +16,12 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return courses.map((course) => ({ slug: course.slug }));
+}
+
+// The green card's heading props from a "Plain *italic* plain *italic*" title
+function ctaTitleParts(title: string) {
+  const [before, highlight = "", after = "", highlightAfter] = emphasisParts(title);
+  return { title: before.trim(), highlight, titleAfter: after.trim(), highlightAfter };
 }
 
 // The hero intro when it fits in a search result (160 characters), else the shorter card text
@@ -100,9 +107,7 @@ export default async function CoursePage({ params }: PageProps<"/academy/[slug]"
         {details ? (
           <BeforeFooterAction
             label={details.cta.label}
-            title={details.cta.title}
-            highlight=""
-            titleAfter=""
+            {...ctaTitleParts(details.cta.title)}
             description={details.cta.description}
             action={{ label: details.cta.action, href: "/contact" }}
           />

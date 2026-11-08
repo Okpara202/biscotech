@@ -94,10 +94,6 @@ export const navItems = [
     label: "Services",
   },
   {
-    href: "/our_work",
-    label: "Our Work",
-  },
-  {
     href: "/about",
     label: "About",
   },

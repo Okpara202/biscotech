@@ -3,6 +3,7 @@ import { DM_Sans, Inter, Manrope, Newsreader } from "next/font/google";
 import Header from "@/components/ui/reusable/header";
 import Footer from "@/components/ui/reusable/footer";
 import JsonLd from "@/components/ui/reusable/jsonLd";
+import WhatsAppButton from "@/components/ui/reusable/whatsappButton";
 import { pageMetadata, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
@@ -135,6 +136,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

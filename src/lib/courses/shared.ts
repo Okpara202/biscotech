@@ -4,7 +4,7 @@ import type { CourseDetails } from ".";
 
 export const packagesHeading = {
   label: "CHOOSE YOUR LEARNING PACKAGE",
-  title: "Three ways to take the course.",
+  title: "Three ways to *take the course.*",
   intro:
     "Explore the learning options available. Course fees and package details will be shared soon.",
 };
@@ -22,7 +22,6 @@ export const packageIntros = {
     description:
       "For learners who want structured guidance and portfolio development.",
     action: "Enquire about professional",
-    featured: true,
   },
   mentorship: {
     tag: "03 · Intensive",

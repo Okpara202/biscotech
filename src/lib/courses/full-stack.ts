@@ -18,7 +18,7 @@ export const fullStack: CourseDetails = {
     {
       type: "expect",
       label: "THE LEARNING EXPERIENCE",
-      title: "From your first line of code to complete applications.",
+      title: "From your *first line of code* to *complete applications.*",
       intro:
         "This course takes you through the complete web development process. Start with the foundations, build interactive user interfaces, develop server-side applications, work with databases and deploy your projects.",
       learn: [
@@ -48,7 +48,7 @@ export const fullStack: CourseDetails = {
       compact: true,
       shortCards: true,
       label: "FULL STACK DEVELOPMENT CURRICULUM",
-      title: "A complete path to building for the web.",
+      title: "A complete path to *building for the web.*",
       intro:
         "Move from web foundations to advanced frontend and backend engineering through structured lessons and practical projects.",
       stages: [
@@ -192,7 +192,7 @@ export const fullStack: CourseDetails = {
       type: "cards",
       tone: "cream",
       label: "PRACTICAL PROJECTS",
-      title: "Build more than just projects.",
+      title: "Build more *than just projects.*",
       intro:
         "Apply your skills through practical exercises and projects that bring frontend, backend and database development together.",
       cards: [

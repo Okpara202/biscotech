@@ -1,5 +1,7 @@
 import Typography from "@/components/ui/typography";
 import type { SectionTone } from "@/lib/courses";
+import { cn } from "@/lib/utils";
+import Emphasis from "./emphasis";
 
 /** Background and spacing for a course section (Figma: sage bands 64px, cream 96px) */
 export const sectionTones: Record<SectionTone, string> = {
@@ -7,15 +9,19 @@ export const sectionTones: Record<SectionTone, string> = {
   cream: "bg-main-background py-14 md:py-20 lg:py-24",
 };
 
-/** List dot: 6px, centred in a 16px box and level with the first line of text */
-export function CourseBullet({ light }: { light?: boolean }) {
+/** List dot: 6px, centred in a 16px box and level with the first line of text.
+ *  dotClassName replaces the dot's colour (e.g. one that changes on hover). */
+export function CourseBullet({ light, dotClassName }: { light?: boolean; dotClassName?: string }) {
   return (
     <span
       aria-hidden="true"
       className="flex size-4 shrink-0 translate-y-0.5 items-center justify-center lg:translate-y-0.75"
     >
       <span
-        className={`size-1.5 rounded-full ${light ? "bg-cards-and-sections" : "bg-black"}`}
+        className={cn(
+          "size-1.5 rounded-full",
+          dotClassName ?? (light ? "bg-cards-and-sections" : "bg-black"),
+        )}
       />
     </span>
   );
@@ -28,13 +34,17 @@ export default function CourseSectionHeading({
   title,
   intro,
   wideTitle,
+  titleClassName,
   introClassName,
 }: {
   label: string;
+  /** *Asterisks* mark the italic words */
   title: string;
-  intro: string;
+  /** Optional: some sections have no paragraph under the heading */
+  intro?: string;
   /** A slightly wider heading (590px, not 566px), for Figma's longer ones */
   wideTitle?: boolean;
+  titleClassName?: string;
   introClassName?: string;
 }) {
   return (
@@ -45,19 +55,25 @@ export default function CourseSectionHeading({
         </Typography>
         <Typography
           variant="section"
-          className={`text-primary-brand ${wideTitle ? "lg:max-w-147.5" : "lg:max-w-141.5"}`}
+          className={cn(
+            "text-primary-brand",
+            wideTitle ? "lg:max-w-147.5" : "lg:max-w-141.5",
+            titleClassName,
+          )}
         >
-          {title}
+          <Emphasis text={title} />
         </Typography>
       </div>
       {/* pre-line: a \n in the course data starts a new line, as some Figma intros do */}
-      <Typography
-        variant="largeBody"
-        as="p"
-        className={`whitespace-pre-line text-primary-brand ${introClassName ?? ""}`}
-      >
-        {intro}
-      </Typography>
+      {intro && (
+        <Typography
+          variant="largeBody"
+          as="p"
+          className={`whitespace-pre-line text-primary-brand ${introClassName ?? ""}`}
+        >
+          {intro}
+        </Typography>
+      )}
     </div>
   );
 }

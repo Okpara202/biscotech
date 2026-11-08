@@ -29,6 +29,7 @@ export const FEES_TBA = "Fees to be announced soon";
 type SectionHeading = {
   /** Small line at the top */
   label: string;
+  /** *Asterisks* mark Figma's italic words: "What should *you expect?*" */
   title: string;
   /** Paragraph under the title */
   intro: string;
@@ -65,13 +66,17 @@ export type CourseSection =
       topicColumns?: 2;
       /** Figma's shorter cards (about 404px), for stages with no description or project */
       shortCards?: boolean;
+      /** Mobile App's "Part" cards (650px): topics written "Lead: details", lead in semibold */
+      partCards?: boolean;
       stages: {
         label: string;
         title: string;
         description?: string;
         topics: string[];
-        /** Shown as "Practical projects: ..." */
+        /** Shown as "Practical projects: ..." in a sage box */
         project?: string;
+        /** Shown as "Practical: ..." in a cream box */
+        practical?: string;
         /** Fits a longer list: wider text and tighter rows, keeping the card's height */
         wide?: boolean;
         /** Rows 12px apart rather than 18px, for Figma's fullest two-column cards */
@@ -84,19 +89,35 @@ export type CourseSection =
       tone: SectionTone;
       /** All cards the same height with their text centred, however long it is */
       sameHeight?: boolean;
+      /** Card labels in light teal rather than the heading colour */
+      tealLabels?: boolean;
+      /** One row that scrolls sideways (Figma shows three of the cards at a time) */
+      scroll?: boolean;
       cards: { label?: string; title: string; description: string }[];
+    })
+  /** Rounded tags, e.g. "Tools and Technologies" */
+  | (SectionHeading & {
+      type: "tools";
+      tools: string[];
+    })
+  /** Sage cards with one line each, two across, e.g. "Build Skills Beyond the Code" */
+  | (Omit<SectionHeading, "intro"> & {
+      type: "highlights";
+      items: string[];
     })
   /** Ticked lists in white cards, e.g. "More than just backend tools." */
   | (SectionHeading & {
       type: "ticks";
       lists: string[][];
     })
-  /** The learning packages; `featured` is the dark, recommended one */
+  /** The learning packages: white cards that turn dark teal and grow on hover */
   | (SectionHeading & {
       type: "packages";
       tone: SectionTone;
       /** Figma's smaller gap (51px, not 96px) down to the green card, on a cream section */
       closeToCta?: boolean;
+      /** All three cards the same height, buttons at the bottom */
+      sameHeight?: boolean;
       packages: {
         tag: string;
         title: string;
@@ -106,7 +127,6 @@ export type CourseSection =
         oneLine?: string[];
         /** Button text */
         action: string;
-        featured?: boolean;
       }[];
     });
 
@@ -127,7 +147,7 @@ export type CourseDetails = {
   /** Figma's narrower fee card (416px, not 464px), for shorter facts */
   narrowFeeCard?: boolean;
   sections: CourseSection[];
-  /** The green card at the bottom */
+  /** The green card at the bottom; *asterisks* mark the italic words in its title */
   cta: { label: string; title: string; description: string; action: string };
   /** Figma's smaller gap (27px, not 96px) from the green card down to the bottom row */
   closeFooter?: boolean;

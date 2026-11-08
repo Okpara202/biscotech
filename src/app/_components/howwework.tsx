@@ -28,7 +28,7 @@ export default function HowWeWork() {
         {/* Section heading */}
         <div className="flex flex-col gap-4 text-center md:gap-6 lg:flex-row lg:items-end lg:justify-between lg:text-left">
           <div className="flex flex-col gap-4.75 lg:w-146.75">
-            <Typography variant="navigation">04 / HOW WE WORK</Typography>
+            <Typography variant="navigation">03 / HOW WE WORK</Typography>
             <Typography variant="section">
               A <Typography variant="span-newsreader">clear process.</Typography>{" "}
               No{" "}

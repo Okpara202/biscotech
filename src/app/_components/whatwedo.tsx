@@ -18,7 +18,7 @@ const whatWeDoList = [
       "Fast, responsive websites that make a strong first impression and guide visitors towards action.",
     button: "Build Your Website",
     href: "/contact#contact",
-    image: "/img/image what we do01.png",
+    image: "/img/web-dev-team.png",
   },
   {
     headerIcon: <WeDoStar />,
@@ -36,7 +36,7 @@ const whatWeDoList = [
       "Focused campaigns and practical digital strategy to help you reach the people who matter.",
     button: "Grow Your Reach",
     href: "/contact#contact",
-    image: "/img/peopleonpc.jpg",
+    image: "/img/marketing-laptop.png",
   },
   {
     headerIcon: <WeDoCircleRing />,
@@ -54,7 +54,7 @@ const whatWeDoList = [
       "Learn in-demand digital skills through practical training designed to turn knowledge into real-world expertise.",
     button: "Explore Courses",
     href: "/academy#courses",
-    image: "/img/people learning.jpg",
+    image: "/img/academy-learning.png",
   },
 ];
 

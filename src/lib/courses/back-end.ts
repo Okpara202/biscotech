@@ -60,7 +60,7 @@ export const backEnd: CourseDetails = {
     {
       type: "expect",
       label: "THE LEARNING EXPERIENCE",
-      title: "Build the systems that power the web.",
+      title: "Build the systems that *power the web.*",
       intro:
         "This course takes you from JavaScript fundamentals to professional backend engineering. You will learn how servers work, build APIs, connect databases, implement authentication, test applications and deploy backend systems.",
       learn: [
@@ -88,7 +88,7 @@ export const backEnd: CourseDetails = {
       tone: "sage",
       compact: true,
       label: "9-MODULE COURSE OUTLINE",
-      title: "From JavaScript foundations to professional backend engineering.",
+      title: "From *JavaScript foundations* to *professional backend engineering.*",
       intro:
         "A structured learning path covering the tools, technologies and engineering practices required to build modern backend applications.",
       stages: [
@@ -259,7 +259,7 @@ export const backEnd: CourseDetails = {
       type: "cards",
       tone: "cream",
       label: "PRACTICAL PROJECTS",
-      title: "Learn by building real backend systems.",
+      title: "Learn by *building real* backend systems.",
       intro:
         "Throughout the course, you will work on practical projects that help you apply backend concepts and develop a strong body of technical work.",
       cards: [
@@ -297,7 +297,7 @@ export const backEnd: CourseDetails = {
     {
       type: "ticks",
       label: "SKILLS BUILT THROUGHOUT",
-      title: "More than just backend tools.",
+      title: "More than *just backend tools.*",
       intro:
         "Develop the engineering habits and problem-solving skills needed to work confidently on professional software projects.",
       lists: [
@@ -317,6 +317,6 @@ export const backEnd: CourseDetails = {
     },
     backendPackages("cream"),
   ],
-  cta: academyCta("Build the technology behind great products.", "READY TO START BUILDING?"),
+  cta: academyCta("Build the technology *behind great products.*", "READY TO START BUILDING?"),
   closeFooter: true,
 };

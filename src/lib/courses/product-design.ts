@@ -14,7 +14,7 @@ export const productDesign: CourseDetails = {
     {
       type: "expect",
       label: "THE LEARNING EXPERIENCE",
-      title: "What should you expect?",
+      title: "What should *you expect?*",
       intro:
         "This course is designed to take learners through the foundations and practical workflow of product design. You will learn concepts, practise in Figma, receive feedback, and work towards a portfolio-ready project.",
       learn: [
@@ -39,7 +39,7 @@ export const productDesign: CourseDetails = {
     {
       type: "modules",
       label: "12-WEEK COURSE OUTLINE",
-      title: "A clear path from basics to your first case study.",
+      title: "A clear path from *basics* to your *first case study.*",
       intro:
         "Illustrative curriculum structure. The final teaching schedule and module sequence should be confirmed by BiscoTech Academy.",
       modules: [
@@ -85,7 +85,7 @@ export const productDesign: CourseDetails = {
       type: "cards",
       tone: "cream",
       label: "PRACTICAL WORK",
-      title: "What will you work on?",
+      title: "What will *you work on?*",
       intro:
         "Expect guided exercises and a final project that helps you apply the concepts instead of only learning theory.",
       cards: [
@@ -110,7 +110,7 @@ export const productDesign: CourseDetails = {
       type: "packages",
       tone: "sage",
       label: "CHOOSE YOUR LEARNING PACKAGE",
-      title: "A clear path from basics to your first case study.",
+      title: "A clear path from *basics* to your *first case study.*",
       intro:
         "Explore the learning options available. Course fees and package details will be shared soon.",
       packages: [
@@ -141,7 +141,6 @@ export const productDesign: CourseDetails = {
           ],
           oneLine: ["CV and portfolio presentation session"],
           action: "Enquire about professional",
-          featured: true,
         },
         {
           tag: "03 · Intensive",
@@ -162,7 +161,7 @@ export const productDesign: CourseDetails = {
   ],
   cta: {
     label: "READY TO TAKE THE NEXT STEP?",
-    title: "Start building your design skills.",
+    title: "Start building your *design skills.*",
     description:
       "Contact BiscoTech Academy to ask about the next cohort, class schedule, delivery format, and confirmed package details.",
     action: "Register course",

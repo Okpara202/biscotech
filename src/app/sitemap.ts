@@ -2,8 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/seo";
 import { courses } from "@/lib/courses";
 
-// /sitemap.xml — tells Google which pages exist. Add new pages here as they're built
-// (Our Work isn't live yet, so it's left out to avoid 404s in Search Console).
+// /sitemap.xml — tells Google which pages exist. Add new pages here as they're built.
 const routes = [
   { path: "", priority: 1 },
   { path: "/services", priority: 0.9 },

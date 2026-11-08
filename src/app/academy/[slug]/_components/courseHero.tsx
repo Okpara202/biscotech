@@ -4,14 +4,16 @@ import Typography from "@/components/ui/typography";
 import { FEES_TBA, SHOW_PRICES, type Course } from "@/lib/courses";
 import { cn } from "@/lib/utils";
 
-// Course name with the last word in teal: Product Design
+// Course name with the last word in teal Newsreader italic: Product *Design* (Figma)
 function CourseName({ title }: { title: string }) {
   const words = title.split(" ");
   const last = words.pop();
   return (
     <Typography variant="hero" className="text-primary-brand">
       {words.length > 0 && <>{words.join(" ")} </>}
-      <span className="text-light-teal">{last}</span>
+      <Typography variant="span-header" className="text-light-teal">
+        {last}
+      </Typography>
     </Typography>
   );
 }

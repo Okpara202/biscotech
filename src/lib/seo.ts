@@ -21,6 +21,8 @@ export const siteConfig = {
   email: CONTACT_EMAIL,
   // Shown on the Contact page and used in the structured data. Keep them identical everywhere.
   phone: { display: "+234 707 6546 314", tel: "+2347076546314" },
+  // Opens a chat with the same number in the WhatsApp app (phones) or WhatsApp Web (computers)
+  whatsapp: "https://wa.me/2347076546314",
   address: {
     street: "No. 8 Anjali Crescent, Independence Layout",
     city: "Enugu",

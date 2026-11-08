@@ -17,7 +17,7 @@ export const frontEnd: CourseDetails = {
       type: "stages",
       tone: "cream",
       label: "YOUR LEARNING PATH",
-      title: "Build your skills, step by step.",
+      title: "Build your skills, *step by step.*",
       intro:
         "Start with the basics, grow your coding skills, and move on to building modern web applications.",
       action: "View full curriculum",
@@ -84,7 +84,7 @@ export const frontEnd: CourseDetails = {
       tone: "sage",
       sameHeight: true,
       label: "SKILLS BUILT THROUGHOUT",
-      title: "More than just writing code.",
+      title: "More than just *writing code.*",
       intro:
         "Develop the habits and workflow needed to keep learning, solve problems, and work well on real projects.",
       cards: [
@@ -138,5 +138,5 @@ export const frontEnd: CourseDetails = {
       ],
     },
   ],
-  cta: academyCta("Take your first step into web development.", "READY TO START BUILDING?"),
+  cta: academyCta("Take your first step into *web development.*", "READY TO START BUILDING?"),
 };

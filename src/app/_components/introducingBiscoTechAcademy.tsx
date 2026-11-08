@@ -8,18 +8,19 @@ import {
 import Typography from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 
-// White labels floating on the photo. Positions are % of the 592×344 Figma image, so they
-// stay in place at any size.
+// White labels drifting around on the photo. Positions are % of the 592×344 Figma image, so
+// they stay in place at any size; each has its own timing so they don't move together.
 const tags = [
   {
     label: "Learn digital skills",
     icon: <NorthStar />,
-    className: "top-[16.5%] left-[2.4%] rotate-10 animate-float",
+    className: "top-[16.5%] left-[2.4%] rotate-10 motion-safe:animate-wander",
   },
   {
     label: "New possibilities",
     icon: <DarkArrowRightUp />,
-    className: "top-[65%] left-[1.4%] animate-float [animation-delay:-2.5s]",
+    className:
+      "top-[65%] left-[1.4%] motion-safe:animate-wander [--wander-delay:-4s] [--wander-time:11s]",
   },
 ];
 
@@ -36,7 +37,7 @@ export default function IntroducingBiscoTechAcademy() {
               as="p"
               className="uppercase text-primary-brand"
             >
-              05 / INTRODUCING BISCOTECH ACADEMY
+              04 / INTRODUCING BISCOTECH ACADEMY
             </Typography>
 
             <div className="flex flex-col items-center gap-3 md:gap-4.5 lg:items-start">

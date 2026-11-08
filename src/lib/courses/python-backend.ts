@@ -18,7 +18,7 @@ export const pythonBackend: CourseDetails = {
     {
       type: "expect",
       label: "THE LEARNING EXPERIENCE",
-      title: "Build the systems that power modern applications.",
+      title: "Build the systems that *power modern applications.*",
       intro:
         "This practical programme takes you from writing your first Python script to developing complete backend applications using industry tools and frameworks.\nYou will learn how to build REST APIs, work with relational databases, implement authentication, integrate third-party services, test applications, and deploy your projects.\nBy the end of the programme, you will have practical experience building backend systems that support real-world applications.",
       learn: [
@@ -36,7 +36,7 @@ export const pythonBackend: CourseDetails = {
       compact: true,
       topicColumns: 2,
       label: "9-MODULE COURSE OUTLINE",
-      title: "Practical Python Backend Development Curriculum.",
+      title: "Practical Python Backend *Development Curriculum.*",
       intro:
         "A structured, project-based journey through Python, modern backend frameworks, databases, security and deployment.",
       stages: [
@@ -275,7 +275,7 @@ export const pythonBackend: CourseDetails = {
       type: "cards",
       tone: "cream",
       label: "YOUR LEARNING OUTCOMES",
-      title: "What you will be able to do.",
+      title: "What you will *be able to do.*",
       intro:
         "Graduate with practical backend development skills and experience building applications from the ground up.",
       cards: [
@@ -319,6 +319,6 @@ export const pythonBackend: CourseDetails = {
     },
     backendPackages("sage"),
   ],
-  cta: academyCta("Build the technology behind great products.", "READY TO START BUILDING?"),
+  cta: academyCta("Build the technology behind *great products.*", "READY TO START BUILDING?"),
   closeFooter: true,
 };

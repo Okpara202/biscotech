@@ -119,7 +119,6 @@ Example usage:
   highlight="your next stage."
   description="We bring strategy, design, and technology together..."
   primaryAction={{ label: "Discuss your project", href: "/contact" }}
-  secondaryAction={{ label: "Explore our work", href: "/our_work" }}
   card={{ title: "A thoughtful approach", text: "Whether you need a website..." }}
 />
 

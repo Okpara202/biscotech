@@ -6,7 +6,6 @@ import { courses } from "@/lib/courses";
 
 const footerLinks = [
   { href: "/services", label: "Services" },
-  { href: "/our_work", label: "Our work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/academy", label: "Academy" },

@@ -15,7 +15,7 @@ export const digitalMarketing: CourseDetails = {
     {
       type: "expect",
       label: "THE LEARNING EXPERIENCE",
-      title: "What should you expect?",
+      title: "What should *you expect?*",
       intro:
         "This practical training takes you through the full digital marketing process—from understanding your audience and building a brand presence to running campaigns, designing funnels, and delivering client projects.",
       learn: [
@@ -40,7 +40,7 @@ export const digitalMarketing: CourseDetails = {
     {
       type: "modules",
       label: "12-WEEK COURSE OUTLINE",
-      title: "From marketing fundamentals to client execution.",
+      title: "From *marketing fundamentals* to *client execution.*",
       intro: "Seven practical modules designed to build your skills step by step.",
       modules: [
         {
@@ -91,7 +91,7 @@ export const digitalMarketing: CourseDetails = {
       type: "cards",
       tone: "cream",
       label: "PRACTICAL WORK",
-      title: "Put your skills into practice.",
+      title: "Put your *skills into practice.*",
       intro:
         "Expect guided exercises and a final project that helps you apply the concepts instead of only learning theory.",
       cards: [
@@ -151,5 +151,5 @@ export const digitalMarketing: CourseDetails = {
       ],
     },
   ],
-  cta: academyCta("Build skills that move businesses forward."),
+  cta: academyCta("Build skills that move *businesses forward.*"),
 };

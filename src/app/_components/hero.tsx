@@ -1,7 +1,25 @@
 import Typography from "@/components/ui/typography";
 import Button from "@/components/ui/button";
-import { ArrowUpEnd } from "@/components/ui/reusable/svg";
+import { ArrowUpEnd, NorthStar } from "@/components/ui/reusable/svg";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+
+// The sage tags on the hero photo, placed as in Figma (% of the 643×544 group) and drifting
+// around on it, each on its own timing so they don't move together
+const heroTags = [
+  {
+    label: "Thoughtful by design",
+    icon: <NorthStar />,
+    className:
+      "top-[3.03%] left-[66.77%] origin-top-left rotate-[11.64deg] [&_path]:stroke-text-charcoal motion-safe:animate-wander",
+  },
+  {
+    label: "Strategy meets creativity",
+    icon: <ArrowUpEnd className="text-text-charcoal" />,
+    className:
+      "top-[83.82%] left-0 motion-safe:animate-wander [--wander-delay:-4s] [--wander-time:11s]",
+  },
+];
 
 export default function Hero() {
   return (
@@ -84,16 +102,37 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* The image's right ~99px is the overhanging "Thoughtful by design" tag.
-              All sizes are Figma's px / 1200px container, so the photo lines up with the nav box edge
-              and the tag hangs past it at any desktop width */}
-          <Image
-            className="h-auto w-full max-w-160.75 shrink-0 lg:ml-[-1.67%] lg:mr-[-8.25%] lg:w-[53.55%] lg:max-w-none"
-            src="/img/heroImage.svg"
-            alt="People working together on their laptops"
-            width={642.6}
-            height={544}
-          />
+          {/* Figma's 643×544 image group: the photo (486px wide, 58px in) and two tags that drift
+              around on it. The right ~99px is the overhanging "Thoughtful by design" tag. Sizes
+              are Figma's px / 1200px container, so the photo lines up with the nav box edge and
+              the tag hangs past it at any desktop width. Positions are % of the group and the
+              tags' text is in cqw, so everything keeps Figma's proportions at any size. */}
+          <div className="@container relative aspect-[642.6/544] w-full max-w-160.75 shrink-0 lg:ml-[-1.67%] lg:mr-[-8.25%] lg:w-[53.55%] lg:max-w-none">
+            <div className="absolute inset-y-0 left-[9.03%] w-[75.63%] overflow-hidden rounded-[4.67cqw]">
+              <Image
+                src="/img/hero-team.png"
+                alt="A team meeting around a table, working together on their laptops"
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, (min-width: 640px) 486px, 75vw"
+                className="object-cover"
+              />
+            </div>
+
+            {heroTags.map((tag) => (
+              <span
+                key={tag.label}
+                className={cn(
+                  "absolute flex items-center gap-[0.714em] rounded-[0.714em] bg-secondary-accent px-[1.714em] py-[0.857em] font-dm-sans text-[2.18cqw] leading-[1.4] whitespace-nowrap text-text-charcoal",
+                  "[&>svg]:size-[1.714em] [&>svg]:shrink-0",
+                  tag.className,
+                )}
+              >
+                {tag.icon}
+                {tag.label}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
     </div>
