@@ -8,7 +8,7 @@ import CourseSectionHeading from "./courseSectionHeading";
 export default function CourseHighlights({ section }: { section: SectionOf<"highlights"> }) {
   return (
     <section className="bg-main-background pt-14 md:pt-20 lg:pt-24">
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
         {/* Figma: the heading is 438px wide, so it breaks before "the Code" */}
         <CourseSectionHeading
           label={section.label}

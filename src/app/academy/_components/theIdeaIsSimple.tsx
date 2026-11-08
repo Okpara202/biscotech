@@ -1,12 +1,12 @@
 import Typography from "@/components/ui/typography";
 
-// Phones/tablets: stacked and centred. Laptop+: label, heading and text in three columns
+// Phones/tablets: stacked, left-aligned. Laptop+: label, heading and text in three columns
 // spread across the row (Figma: 127px / 436px / 367px with equal 133px gaps). The columns
 // shrink together on smaller laptops.
 export default function TheIdeaIsSimple() {
   return (
     <section className="bg-main-background py-14 md:py-20 lg:py-24">
-      <div className="page-container flex flex-col items-center gap-6 text-center md:gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10 lg:text-left">
+      <div className="page-container flex flex-col items-start gap-6 md:gap-8 lg:flex-row lg:justify-between lg:gap-10">
         <Typography variant="navigation" as="p" className="text-primary-brand lg:shrink-0">
           THE IDEA IS SIMPLE
         </Typography>

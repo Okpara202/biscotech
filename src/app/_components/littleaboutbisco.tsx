@@ -27,7 +27,7 @@ export default function LittleAboutBisco() {
       <div className="mx-auto flex page-container flex-col gap-10 lg:gap-4.5">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-22.5">
           {/* Intro */}
-          <div className="flex flex-col gap-4 text-center md:gap-8.5 lg:w-155.75 lg:text-left">
+          <div className="flex flex-col gap-4 md:gap-8.5 lg:w-155.75">
             <Typography variant="navigation" className="text-primary-brand">
               02 / A LITTLE ABOUT BISCO
             </Typography>

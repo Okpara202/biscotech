@@ -42,10 +42,10 @@ export default function Hero() {
           </Typography>
         </aside>
 
-        <div className="mt-8 flex flex-col items-center gap-10 lg:mt-12.75 lg:flex-row lg:items-start lg:justify-between lg:gap-0">
+        <div className="mt-8 flex flex-col items-start gap-10 lg:mt-12.75 lg:flex-row lg:justify-between lg:gap-0">
           {/* Text column */}
-          {/* Centred while stacked (below lg), left-aligned beside the image on laptop+ */}
-          <div className="flex w-full min-w-0 flex-col items-center gap-5 text-center md:gap-6 lg:flex-1 lg:max-w-169.75 lg:items-start lg:gap-9.5 lg:text-left">
+          {/* Left-aligned: stacked above the image below lg, beside it on laptop+ */}
+          <div className="flex w-full min-w-0 flex-col items-start gap-5 md:gap-6 lg:flex-1 lg:max-w-169.75 lg:gap-9.5">
             <Typography
               variant="hero"
               className="max-w-166.75 text-primary-brand"
@@ -88,7 +88,7 @@ export default function Hero() {
             </Typography>
 
             {/* Phones: full-width stacked buttons (easy thumb targets); side by side from sm */}
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4.5 lg:justify-start">
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4.5">
               <Button
                 href="/contact"
                 className="w-full border-primary-brand bg-primary-brand text-cards-and-sections sm:w-auto"

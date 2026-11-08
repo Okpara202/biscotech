@@ -17,10 +17,10 @@ export default function ContactHero() {
     <section id="contact" className="bg-secondary-accent/40">
       {/* Spacing on the inner box (the section's top padding is the header offset).
           Figma: content 96px below the header line. */}
-      <div className="mx-auto page-container flex flex-col items-center gap-10 pt-10 pb-16 lg:flex-row lg:items-start lg:justify-between lg:gap-3.5 lg:pt-24 lg:pb-24">
-        {/* Left: centred while stacked, left-aligned beside the form on laptop+ */}
-        <div className="flex w-full flex-col items-center gap-6 text-center lg:min-w-0 lg:flex-1 lg:max-w-152.75 lg:items-start lg:text-left">
-          <div className="flex flex-col items-center gap-5 md:gap-6 lg:items-start">
+      <div className="mx-auto page-container flex flex-col items-start gap-10 pt-10 pb-16 lg:flex-row lg:justify-between lg:gap-3.5 lg:pt-24 lg:pb-24">
+        {/* Left: stacked above the form below lg, beside it on laptop+ */}
+        <div className="flex w-full flex-col items-start gap-6 lg:min-w-0 lg:flex-1 lg:max-w-152.75">
+          <div className="flex flex-col items-start gap-5 md:gap-6">
             <Typography variant="text" as="p" className="uppercase text-text-charcoal">
               OUR PROCESS · HOW WE WORK
             </Typography>
@@ -43,7 +43,7 @@ export default function ContactHero() {
 
           {/* Details list: sage line under each, 40px top/bottom on laptop (Figma) */}
           <ul className="w-full max-w-xl lg:max-w-147.5">
-            <li className="flex flex-col items-center gap-1 border-b border-secondary-accent py-6 lg:items-start lg:gap-3 lg:py-10">
+            <li className="flex flex-col items-start gap-1 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10">
               <Typography variant="primaryButton" as="p" className="text-primary-brand">
                 EMAIL
               </Typography>
@@ -58,7 +58,7 @@ export default function ContactHero() {
                 <DarkArrowRightUp />
               </a>
             </li>
-            <li className="flex flex-col items-center gap-1 border-b border-secondary-accent py-6 lg:items-start lg:gap-3 lg:py-10">
+            <li className="flex flex-col items-start gap-1 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10">
               <Typography variant="primaryButton" as="p" className="text-primary-brand">
                 PHONE
               </Typography>
@@ -73,7 +73,7 @@ export default function ContactHero() {
                 <DarkArrowRightUp />
               </a>
             </li>
-            <li className="flex flex-col items-center gap-2 border-b border-secondary-accent py-6 lg:items-start lg:gap-3 lg:py-10">
+            <li className="flex flex-col items-start gap-2 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10">
               <Typography variant="primaryButton" as="p" className="text-primary-brand">
                 VISIT US
               </Typography>
@@ -84,7 +84,7 @@ export default function ContactHero() {
             {details.map((detail) => (
               <li
                 key={detail.label}
-                className="flex flex-col items-center gap-2 border-b border-secondary-accent py-6 lg:items-start lg:gap-3 lg:py-10"
+                className="flex flex-col items-start gap-2 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10"
               >
                 <Typography variant="primaryButton" as="p" className="text-primary-brand">
                   {detail.label}

@@ -26,7 +26,7 @@ export default function HowWeWork() {
     <section className="bg-primary-brand py-16 text-cards-and-sections">
       <div className="mx-auto flex page-container flex-col gap-8 md:gap-13">
         {/* Section heading */}
-        <div className="flex flex-col gap-4 text-center md:gap-6 lg:flex-row lg:items-end lg:justify-between lg:text-left">
+        <div className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex flex-col gap-4.75 lg:w-146.75">
             <Typography variant="navigation">03 / HOW WE WORK</Typography>
             <Typography variant="section">
@@ -37,18 +37,19 @@ export default function HowWeWork() {
               </Typography>
             </Typography>
           </div>
-          <Typography variant="body" className="mx-auto max-w-xl lg:mx-0 lg:w-83.5">
+          <Typography variant="body" className="max-w-xl lg:w-83.5">
             Good collaboration makes better work. Here&apos;s what working with
             Bisco can look like.
           </Typography>
         </div>
 
-        {/* Steps */}
-        <ol className="reveal-children grid grid-cols-1 gap-6.5 md:grid-cols-3">
+        {/* Steps. stack-cards: on phones they pile up over each other as you scroll (each
+            needs the section's teal behind it to cover the one underneath) */}
+        <ol className="reveal-children stack-cards grid grid-cols-1 gap-6.5 md:grid-cols-3">
           {steps.map((step) => (
             <li
               key={step.label}
-              className="flex flex-col gap-4 border-t border-cards-and-sections py-5 md:gap-10.75 md:px-6 md:py-5.5 lg:px-11"
+              className="flex flex-col gap-4 border-t border-cards-and-sections bg-primary-brand py-5 md:gap-10.75 md:px-6 md:py-5.5 lg:px-11"
             >
               {/* Smaller on phones so the step title stays the stronger line */}
               <Typography

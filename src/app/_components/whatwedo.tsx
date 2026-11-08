@@ -63,7 +63,8 @@ const displayWhatWeDoItems = whatWeDoList.map((item, index) => (
     key={index}
     // Phones: stacked. Tablet (md): two columns — title + image | description + link.
     // Laptop (lg): the Figma three-part row.
-    className="group flex flex-col gap-4 border-b border-b-secondary-accent py-6 md:grid md:grid-cols-2 md:gap-8 lg:flex lg:flex-row lg:items-stretch lg:justify-between"
+    // Cream background so, while stacking on phones/tablets, it covers the row underneath
+    className="group flex flex-col gap-4 border-b border-b-secondary-accent bg-main-background py-6 md:grid md:grid-cols-2 md:gap-8 lg:flex lg:flex-row lg:items-stretch lg:justify-between"
   >
     {/* Icon + title (324px) and image (400×256), 26px apart */}
     <div className="flex min-w-0 flex-col gap-4 md:gap-6 lg:flex-row lg:items-center lg:gap-6.5">
@@ -118,8 +119,8 @@ export default function WhatWeDo() {
     // Figma: 96px above the heading, 48px heading → first row, 74px below the last row
     <section className="bg-main-background pt-16 pb-14 lg:pt-24 lg:pb-18.5">
       <div className="mx-auto page-container">
-        {/* Intro centred while stacked, left/right split on laptop+ */}
-        <div className="flex flex-col gap-5 border-b border-b-secondary-accent pb-10 text-center lg:flex-row lg:items-start lg:justify-between lg:gap-24 lg:pb-12 lg:text-left">
+        {/* Intro stacked below lg, left/right split on laptop+ */}
+        <div className="flex flex-col gap-5 border-b border-b-secondary-accent pb-10 lg:flex-row lg:items-start lg:justify-between lg:gap-24 lg:pb-12">
           <aside className="">
             <Typography variant="navigation" className="text-primary-brand">
               01 / WHAT WE DO
@@ -134,7 +135,7 @@ export default function WhatWeDo() {
             </Typography>
           </aside>
           {/* Figma: 334px wide text box, flush with the container's right edge */}
-          <aside className="mx-auto max-w-xl lg:mx-0 lg:w-83.5 lg:shrink-0">
+          <aside className="max-w-xl lg:w-83.5 lg:shrink-0">
             <Typography variant="body" className="text-text-charcoal">
               Clear thinking, creative execution and digital solutions designed
               around the way your business works.
@@ -151,7 +152,9 @@ export default function WhatWeDo() {
           </aside>
         </div>
 
-        {displayWhatWeDoItems}
+        {/* stack-cards: on phones/tablets each row pauses under the header and the next one
+            slides up over it. reveal-children: the rows still rise in one by one */}
+        <div className="reveal-children stack-cards">{displayWhatWeDoItems}</div>
       </div>
     </section>
   );

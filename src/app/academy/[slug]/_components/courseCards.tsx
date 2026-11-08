@@ -8,7 +8,7 @@ import CourseSectionHeading, { sectionTones } from "./courseSectionHeading";
 export default function CourseCards({ section }: { section: SectionOf<"cards"> }) {
   return (
     <section className={sectionTones[section.tone]}>
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
         <CourseSectionHeading label={section.label} title={section.title} intro={section.intro} />
 
         {/* Figma: each card is only as tall as its text and centred along the row, unless the
@@ -19,7 +19,8 @@ export default function CourseCards({ section }: { section: SectionOf<"cards"> }
             "reveal-children w-full gap-4",
             section.scroll
               ? "flex snap-x snap-mandatory items-stretch overflow-x-auto pb-2 lg:gap-5.75"
-              : "grid max-w-xl lg:max-w-none lg:grid-cols-3 lg:gap-5.75",
+              : // stack-cards: on phones/tablets the cards pile up over each other as you scroll
+                "stack-cards grid max-w-xl lg:max-w-none lg:grid-cols-3 lg:gap-5.75",
             !section.scroll && !section.sameHeight && "lg:items-center",
           )}
         >

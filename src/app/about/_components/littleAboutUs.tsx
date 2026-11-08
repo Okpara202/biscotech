@@ -6,13 +6,13 @@ const aboutUsDesc = [
   "We’re building BiscoTech around a simple belief: digital should not just look good. It should work hard for the people it serves.",
 ];
 
-// Phones/tablets: stacked and centred. Laptop+: heading left, text right (Figma: 91px apart,
+// Phones/tablets: stacked, left-aligned. Laptop+: heading left, text right (Figma: 91px apart,
 // heading 409px wide so it breaks over three lines, text column 684px).
 export default function LittleAboutUs() {
   return (
     <section className="bg-main-background py-14 md:py-20 lg:py-24">
-      <div className="page-container flex flex-col items-center gap-8 text-center md:gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-22.75 lg:text-left">
-        <div className="flex flex-col items-center gap-3 md:gap-4.5 lg:flex-[0_1_26.1875rem] lg:items-start lg:gap-6">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:flex-row lg:justify-between lg:gap-22.75">
+        <div className="flex flex-col items-start gap-3 md:gap-4.5 lg:flex-[0_1_26.1875rem] lg:gap-6">
           <Typography variant="navigation" as="p" className="text-primary-brand">
             A LITTLE ABOUT US
           </Typography>
@@ -28,7 +28,7 @@ export default function LittleAboutUs() {
           </Typography>
         </div>
 
-        <div className="flex max-w-xl flex-col items-center gap-4 md:gap-6 lg:min-w-0 lg:max-w-none lg:flex-[0_1_42.75rem] lg:items-start">
+        <div className="flex max-w-xl flex-col items-start gap-4 md:gap-6 lg:min-w-0 lg:max-w-none lg:flex-[0_1_42.75rem]">
           <Typography variant="cardHeading" as="p" className="text-primary-brand">
             BiscoTech is a digital agency bringing design, technology, and
             strategy together to help businesses build a stronger presence

@@ -111,6 +111,7 @@ export function CheckCircle({ className }: { className?: string }) {
   );
 }
 
+// The star slowly turns wherever it's used (around its own centre, 11.625)
 export function NorthStar() {
   return (
     <svg
@@ -120,34 +121,36 @@ export function NorthStar() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M20.625 11.625H2.625"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="#D7B98E"
-      />
-      <path
-        d="M11.625 2.625V20.625"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="#D7B98E"
-      />
-      <path
-        d="M6.375 16.875L16.875 6.375"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="#D7B98E"
-      />
-      <path
-        d="M16.875 16.875L6.375 6.375"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="#D7B98E"
-      />
+      <g className="motion-safe:animate-star-spin" style={{ transformOrigin: "11.625px 11.625px" }}>
+        <path
+          d="M20.625 11.625H2.625"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="#D7B98E"
+        />
+        <path
+          d="M11.625 2.625V20.625"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="#D7B98E"
+        />
+        <path
+          d="M6.375 16.875L16.875 6.375"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="#D7B98E"
+        />
+        <path
+          d="M16.875 16.875L6.375 6.375"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="#D7B98E"
+        />
+      </g>
     </svg>
   );
 }
@@ -184,34 +187,37 @@ export function WeDoStar() {
     >
       <rect width="60" height="60" rx="20" fill="#C6D9D2" />
       <g clipPath="url(#clip0_2072_394)">
-        <path
-          d="M34.3125 29.8125H25.3125"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          stroke="#123F3A"
-        />
-        <path
-          d="M29.8125 25.3125V34.3125"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          stroke="#123F3A"
-        />
-        <path
-          d="M27.1875 32.4375L32.4375 27.1875"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          stroke="#123F3A"
-        />
-        <path
-          d="M32.4375 32.4375L27.1875 27.1875"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          stroke="#123F3A"
-        />
+        {/* Only the star turns (around its centre, 29.8125); the tile stays still */}
+        <g className="motion-safe:animate-star-spin" style={{ transformOrigin: "29.8125px 29.8125px" }}>
+          <path
+            d="M34.3125 29.8125H25.3125"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            stroke="#123F3A"
+          />
+          <path
+            d="M29.8125 25.3125V34.3125"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            stroke="#123F3A"
+          />
+          <path
+            d="M27.1875 32.4375L32.4375 27.1875"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            stroke="#123F3A"
+          />
+          <path
+            d="M32.4375 32.4375L27.1875 27.1875"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            stroke="#123F3A"
+          />
+        </g>
       </g>
       <defs>
         <clipPath id="clip0_2072_394">

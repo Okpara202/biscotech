@@ -17,7 +17,7 @@ export default function Footer() {
     <FooterRow courseSlugs={courses.map((course) => course.slug)}>
     <footer className="bg-primary-brand pt-8 pb-4 text-cards-and-sections md:pt-10.25 md:pb-4.5">
       <div className="mx-auto page-container">
-        <div className="flex flex-col items-center gap-4 md:flex-row md:items-start md:justify-between md:gap-8">
+        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
           {/* Logo on a white tile (smaller on phones) */}
           <Link
             href="/"
@@ -33,14 +33,19 @@ export default function Footer() {
             />
           </Link>
 
-          <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-1 md:justify-start md:gap-x-8.5">
+          {/* Phones: one link per line, in a single left-aligned column.
+              md+: Figma's row beside the logo */}
+          <nav
+            aria-label="Footer"
+            className="flex flex-col items-start md:flex-row md:items-center md:gap-x-8.5"
+          >
             {footerLinks.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className="relative p-2 after:absolute after:inset-x-2 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 md:p-2.5 md:after:inset-x-2.5"
+                className="relative py-2 whitespace-nowrap after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 md:p-2.5 md:after:inset-x-2.5"
               >
-                {/* 14px on phones, Figma's 20px from md */}
+                {/* 14px on phones, Figma's 20px from lg */}
                 <Typography
                   variant="cardHeading"
                   as="span"
@@ -53,20 +58,20 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Always side by side. Phones: two equal halves, each text centred in its half
+        {/* Always side by side. Phones: two equal halves, each text left-aligned in its half
             (may wrap onto two lines). md+: Figma's left/right split. */}
         <div className="mt-6 flex items-start justify-between gap-4 border-t border-secondary-accent pt-3 md:mt-28.75 md:items-center md:gap-2 md:pt-6.5">
           <Typography
             variant="contactHeader"
             as="p"
-            className="flex-1 text-center text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-left md:text-sm lg:text-base lg:leading-7"
+            className="flex-1 text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-sm lg:text-base lg:leading-7"
           >
             Startups · Businesses · Personal brands
           </Typography>
           <Typography
             variant="contactHeader"
             as="p"
-            className="flex-1 text-center text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-left md:text-sm lg:text-base lg:leading-7"
+            className="flex-1 text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-sm lg:text-base lg:leading-7"
           >
             Thoughtful digital. Meaningful growth.
           </Typography>

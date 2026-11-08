@@ -32,7 +32,7 @@ export default function ContactUs() {
     <section id="contact" className="scroll-mt-8 bg-main-background py-16 lg:py-24">
       <div className="mx-auto flex page-container flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
         {/* Intro */}
-        <div className="flex flex-col items-center gap-4 text-center md:gap-5 lg:w-110.75 lg:shrink-0 lg:items-start lg:text-left">
+        <div className="flex flex-col items-start gap-4 md:gap-5 lg:w-110.75 lg:shrink-0">
           <Typography variant="navigation" className="text-primary-brand">
             LET&apos;S TALK
           </Typography>
@@ -45,7 +45,7 @@ export default function ContactUs() {
             what you need and how we might help.
           </Typography>
 
-          <div className="flex flex-col items-center gap-1 lg:items-start">
+          <div className="flex flex-col items-start gap-1">
             <Typography variant="body" className="text-text-charcoal">
               EMAIL
             </Typography>

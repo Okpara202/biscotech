@@ -11,7 +11,7 @@ export default function CourseCatalogue() {
     <section id="courses" className="bg-secondary-accent py-14 md:py-16 lg:pt-16 lg:pb-17.25">
       <div className="page-container flex flex-col gap-10 md:gap-14 lg:gap-23">
         {/* Figma: 498px wide, 18px between label, heading and text */}
-        <div className="mx-auto flex max-w-xl flex-col items-center gap-3 text-center md:gap-4.5 lg:mx-0 lg:max-w-124.5 lg:items-start lg:text-left">
+        <div className="flex max-w-xl flex-col items-start gap-3 md:gap-4.5 lg:max-w-124.5">
           <Typography variant="navigation" as="p" className="text-primary-brand">
             COURSE CATALOGUE
           </Typography>

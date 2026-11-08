@@ -15,7 +15,7 @@ export default function TellUsAbout() {
           B
         </span>
 
-        <div className="relative flex flex-col items-center gap-3 text-center md:gap-4.5 lg:items-start lg:text-left">
+        <div className="relative flex flex-col items-start gap-3 md:gap-4.5">
           <Typography variant="text" className="text-primary-brand">
             Have something in mind?
           </Typography>

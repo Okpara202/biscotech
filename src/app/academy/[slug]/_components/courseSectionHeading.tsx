@@ -28,7 +28,7 @@ export function CourseBullet({ light, dotClassName }: { light?: boolean; dotClas
 }
 
 // The heading block every course section starts with (Figma: 612px wide, heading 566px; 12px
-// under the label, 22px above the paragraph). Centred on phones/tablets, left on laptop+.
+// under the label, 22px above the paragraph). Left-aligned at every size.
 export default function CourseSectionHeading({
   label,
   title,
@@ -48,8 +48,8 @@ export default function CourseSectionHeading({
   introClassName?: string;
 }) {
   return (
-    <div className="mx-auto flex max-w-xl flex-col items-center gap-4 text-center md:gap-5.5 lg:mx-0 lg:max-w-153 lg:items-start lg:text-left">
-      <div className="flex flex-col items-center gap-3 lg:items-start">
+    <div className="flex max-w-xl flex-col items-start gap-4 md:gap-5.5 lg:max-w-153">
+      <div className="flex flex-col items-start gap-3">
         <Typography variant="navigation" as="p" className="text-primary-brand">
           {label}
         </Typography>

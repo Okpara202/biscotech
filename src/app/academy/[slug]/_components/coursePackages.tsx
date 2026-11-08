@@ -34,7 +34,7 @@ export default function CoursePackages({ section }: { section: SectionOf<"packag
         section.closeToCta && "lg:-mb-11.25",
       )}
     >
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
         <CourseSectionHeading label={section.label} title={section.title} intro={section.intro} />
 
         {/* Figma: each card is only as tall as its content, centred along the row */}

@@ -45,8 +45,8 @@ export default function EveryHero({
       {/* Spacing lives on the inner box: the section's own top padding is reserved for
           the header offset (globals.css). Figma: 86px below the header line, ~80px below. */}
       <div className="mx-auto page-container flex flex-col items-center gap-8 pt-10 pb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-4.5 lg:pt-21.5 lg:pb-20">
-        {/* Left: centred while stacked, left-aligned beside the card on laptop+ */}
-        <div className="flex w-full flex-col items-center gap-5 text-center md:gap-6 lg:w-152.75 lg:shrink-0 lg:items-start lg:text-left">
+        {/* Left: stacked above the card below lg, beside it on laptop+ */}
+        <div className="flex w-full flex-col items-start gap-5 md:gap-6 lg:w-152.75 lg:shrink-0">
           <Typography variant="text" className="uppercase text-text-charcoal">
             {label}
           </Typography>

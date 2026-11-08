@@ -42,9 +42,9 @@ export default function WorkingTogether() {
   return (
     <>
       <section className="bg-secondary-accent py-14 lg:py-16">
-        <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+        <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
           {/* Phones/tablets: centred. Laptop+: left, 587px wide so "us." drops to line two */}
-          <div className="flex flex-col items-center gap-3 text-center md:gap-4.5 lg:items-start lg:text-left">
+          <div className="flex flex-col items-start gap-3 md:gap-4.5">
             <Typography
               variant="navigation"
               as="p"

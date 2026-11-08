@@ -39,6 +39,46 @@
   animation: wander var(--wander-time, 9s) ease-in-out var(--wander-delay, 0s) infinite;
 }
 
+/* Rows of cards that stack while scrolling (phones/tablets, where the row becomes a column):
+   each card pins just under the header, a little lower than the one before, and the next one
+   slides up over it. Put on the list; its children are the cards (give them a solid
+   background). Laptop+ keeps the normal row, so nothing sticks there. */
+@utility stack-cards {
+  @media (width < 64rem) {
+    & > * {
+      position: sticky;
+      top: calc(var(--header-h, 5rem) + 1rem + var(--stack-step, 0rem));
+      box-shadow: 0 -0.75rem 1.5rem -1.25rem rgba(18, 63, 58, 0.45);
+    }
+    & > :nth-child(2) {
+      --stack-step: 0.75rem;
+    }
+    & > :nth-child(3) {
+      --stack-step: 1.5rem;
+    }
+    & > :nth-child(4) {
+      --stack-step: 2.25rem;
+    }
+    & > :nth-child(5) {
+      --stack-step: 3rem;
+    }
+    & > :nth-child(6) {
+      --stack-step: 3.75rem;
+    }
+  }
+}
+
+/* The north-star icon turning slowly (one turn every 8s), wherever it appears */
+@utility animate-star-spin {
+  animation: star-spin 8s linear infinite;
+}
+
+@keyframes star-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* The homepage banner: a row holding its list twice, slid left by one copy and repeated, so
    it scrolls right to left without a jump (phones too) */
 @utility animate-marquee {
@@ -177,6 +217,14 @@ main > :first-child {
       animation: rise-in linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 80%;
+    }
+
+    /* Stacking cards (phones/tablets): no fade-in, or each card would be see-through while
+       it slides up over the one before. Laptop+ keeps the item-by-item reveal (rise-in). */
+    @media (width < 64rem) {
+      main .reveal-children.stack-cards > * {
+        animation: none;
+      }
     }
   }
 

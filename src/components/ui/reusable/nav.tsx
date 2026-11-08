@@ -68,7 +68,7 @@ export function FooterRow({
 
   return (
     <footer className="bg-main-background pb-5.5">
-      <div className="page-container flex flex-wrap items-center justify-center gap-x-0.75 lg:justify-start">
+      <div className="page-container flex flex-wrap items-center gap-x-0.75">
         <Typography variant="body" as="p" className="text-text-charcoal">
           &copy; {new Date().getFullYear()} BiscoTech Academy
         </Typography>

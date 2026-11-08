@@ -19,13 +19,13 @@ const philosophy = [
   },
 ];
 
-// Phones/tablets: intro centred above the numbered list. Laptop+: intro left, list right
+// Phones/tablets: intro above the numbered list. Laptop+: intro left, list right
 // (Figma: list column ~568px, starting just past the middle). The green CTA card sits below.
 export default function LearningPhilosophy() {
   return (
     <section className="bg-main-background py-14 md:py-20 lg:py-24">
       <div className="page-container grid gap-10 md:gap-12 lg:grid-cols-[1fr_35.5rem] lg:gap-16">
-        <div className="flex flex-col items-center gap-3 text-center md:gap-4.5 lg:items-start lg:gap-6 lg:text-left">
+        <div className="flex flex-col items-start gap-3 md:gap-4.5 lg:gap-6">
           <Typography variant="navigation" as="p" className="text-primary-brand">
             OUR LEARNING PHILOSOPHY
           </Typography>

@@ -76,13 +76,13 @@ const displaySteps = steps.map((step) => (
   </div>
 ));
 
-// Phones/tablets: heading centred, cards in one column. Laptop+: heading left, 2×2 grid of
+// Phones/tablets: heading on top, cards in one column. Laptop+: heading left, 2×2 grid of
 // cards (Figma: 20px between columns, 18px between rows, 24px below the heading).
 export default function FirstConversation() {
   return (
     <section className="bg-main-background py-14 md:py-20 lg:py-24">
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
-        <div className="flex flex-col items-center gap-3 text-center md:gap-4.5 lg:items-start lg:text-left">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+        <div className="flex flex-col items-start gap-3 md:gap-4.5">
           <Typography
             variant="navigation"
             as="p"

@@ -75,7 +75,7 @@ export default function CourseExpect({ section }: { section: SectionOf<"expect">
   if (!section.audience) {
     return (
       <section className={sectionTones.cream}>
-        <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:flex-row lg:items-start lg:justify-between">
+        <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:flex-row lg:justify-between">
           {heading}
           <Checklist
             title="What you'll learn"

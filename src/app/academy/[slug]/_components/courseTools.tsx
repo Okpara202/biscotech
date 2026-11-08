@@ -8,10 +8,10 @@ import CourseSectionHeading from "./courseSectionHeading";
 export default function CourseTools({ section }: { section: SectionOf<"tools"> }) {
   return (
     <section className="bg-main-background pt-14 md:pt-20 lg:pt-24">
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
         <CourseSectionHeading label={section.label} title={section.title} intro={section.intro} />
 
-        <ul className="reveal-children flex flex-wrap justify-center gap-x-3.25 gap-y-3 lg:justify-start lg:gap-y-4.5">
+        <ul className="reveal-children flex flex-wrap gap-x-3.25 gap-y-3 lg:gap-y-4.5">
           {section.tools.map((tool) => (
             <li
               key={tool}

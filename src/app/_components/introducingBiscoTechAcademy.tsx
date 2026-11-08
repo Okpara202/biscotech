@@ -24,14 +24,16 @@ const tags = [
   },
 ];
 
-// Phones/tablets: text centred above the photo. Laptop+: text left, photo right (Figma:
-// photo 592×344, top of the label level with the top of the photo).
+// Phones/tablets: text, then the photo, then the button. Laptop+: text and button left, photo
+// right (Figma: photo 592×344, top of the label level with the top of the photo).
 export default function IntroducingBiscoTechAcademy() {
   return (
     <section className="bg-main-background pt-16 lg:pt-24">
-      <div className="page-container flex flex-col items-center gap-10 md:gap-12 lg:flex-row lg:items-stretch lg:justify-between lg:gap-10">
-        <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:justify-between lg:text-left">
-          <div className="flex flex-col items-center gap-3 md:gap-4.5 lg:items-start lg:gap-6">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-10">
+        {/* Below lg this wrapper steps aside (contents), so the text, photo and button can be
+            ordered one after another; on laptop+ it's the left column again */}
+        <div className="contents lg:flex lg:flex-col lg:items-start lg:justify-between lg:gap-6">
+          <div className="order-1 flex flex-col items-start gap-3 md:gap-4.5 lg:gap-6">
             <Typography
               variant="navigation"
               as="p"
@@ -40,7 +42,7 @@ export default function IntroducingBiscoTechAcademy() {
               04 / INTRODUCING BISCOTECH ACADEMY
             </Typography>
 
-            <div className="flex flex-col items-center gap-3 md:gap-4.5 lg:items-start">
+            <div className="flex flex-col items-start gap-3 md:gap-4.5">
               <Typography
                 variant="section"
                 className="max-w-xl text-primary-brand lg:max-w-115"
@@ -66,13 +68,13 @@ export default function IntroducingBiscoTechAcademy() {
           <Button
             href="/academy"
             icon={<ArrowUpEnd />}
-            className="shrink-0 border-0 bg-primary-brand text-cards-and-sections w-full sm:w-auto"
+            className="order-3 shrink-0 border-0 bg-primary-brand text-cards-and-sections w-full sm:w-auto"
           >
             Discover academy
           </Button>
         </div>
 
-        <div className="group relative aspect-592/344 w-full max-w-xl shrink-0 overflow-hidden rounded-[1.25rem] lg:w-148 lg:max-w-none">
+        <div className="group relative order-2 aspect-592/344 w-full max-w-xl shrink-0 overflow-hidden rounded-[1.25rem] lg:w-148 lg:max-w-none">
           <Image
             src="/img/academy_image.jpg"
             alt="A smiling young man holding a laptop, learning digital skills"

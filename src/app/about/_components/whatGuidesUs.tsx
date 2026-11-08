@@ -45,13 +45,13 @@ const displayGuides = guides.map((guide) => (
   </div>
 ));
 
-// Phones/tablets: heading centred, cards stacked in one column. Laptop+: heading left,
+// Phones/tablets: heading on top, cards stacked in one column. Laptop+: heading left,
 // three cards in a row (Figma: 20.4px apart, 24px below the heading).
 export default function WhatGuidesUs() {
   return (
     <section className="bg-secondary-accent py-14 lg:py-16">
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
-        <div className="flex flex-col items-center gap-3 text-center lg:items-start lg:text-left">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+        <div className="flex flex-col items-start gap-3">
           <Typography
             variant="navigation"
             as="p"
@@ -69,7 +69,8 @@ export default function WhatGuidesUs() {
           </Typography>
         </div>
 
-        <div className="grid w-full max-w-xl grid-cols-1 gap-4 md:gap-5 lg:max-w-none lg:grid-cols-3 lg:gap-[1.275rem]">
+        {/* stack-cards: on phones/tablets the cards pile up over each other as you scroll */}
+        <div className="stack-cards grid w-full max-w-xl grid-cols-1 gap-4 md:gap-5 lg:max-w-none lg:grid-cols-3 lg:gap-[1.275rem]">
           {displayGuides}
         </div>
       </div>

@@ -67,13 +67,13 @@ const displayHelp = help.map((item) => (
   </div>
 ));
 
-// Phones: heading centred, one column of services. Tablet+: two columns (Figma: 16px
+// Phones: heading on top, one column of services. Tablet+: two columns (Figma: 16px
 // between columns, 12px between rows, 24px below the heading). The CTA card sits 96px below.
 export default function WeHelp() {
   return (
     <section className="bg-main-background pt-14 pb-16 lg:py-24">
-      <div className="page-container flex flex-col items-center gap-8 md:gap-10 lg:items-stretch lg:gap-6">
-        <div className="flex flex-col items-center gap-3 text-center lg:items-start lg:text-left">
+      <div className="page-container flex flex-col items-start gap-8 md:gap-10 lg:items-stretch lg:gap-6">
+        <div className="flex flex-col items-start gap-3">
           <Typography
             variant="navigation"
             as="p"

@@ -18,7 +18,7 @@ function CourseName({ title }: { title: string }) {
   );
 }
 
-// Phones/tablets: text centred above the fee card. Laptop+: label across the top, then text
+// Phones/tablets: text (left-aligned) above the fee card. Laptop+: label across the top, then text
 // left (612px) and fee card right (464px), both level with each other (Figma).
 // First section on the page, so it sits behind the transparent header like the other heroes.
 export default function CourseHero({ course }: { course: Course }) {
@@ -33,13 +33,13 @@ export default function CourseHero({ course }: { course: Course }) {
         <Typography
           variant="text"
           as="p"
-          className="text-center uppercase text-text-charcoal lg:text-left"
+          className="uppercase text-text-charcoal"
         >
           {details?.heroLabel ?? "BISCOTECH ACADEMY"}
         </Typography>
 
-        <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex max-w-xl flex-col items-center gap-6 text-center lg:min-w-0 lg:max-w-153 lg:flex-1 lg:items-start lg:gap-8 lg:text-left">
+        <div className="flex flex-col items-start gap-10 lg:flex-row lg:justify-between">
+          <div className="flex max-w-xl flex-col items-start gap-6 lg:min-w-0 lg:max-w-153 lg:flex-1 lg:gap-8">
             <div className="flex flex-col gap-3 lg:gap-2">
               <CourseName title={details?.heroTitle ?? course.title} />
 
