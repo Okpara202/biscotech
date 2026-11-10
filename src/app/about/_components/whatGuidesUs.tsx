@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 
 const guides = [
@@ -69,10 +70,13 @@ export default function WhatGuidesUs() {
           </Typography>
         </div>
 
-        {/* stack-cards: on phones/tablets the cards pile up over each other as you scroll */}
-        <div className="stack-cards grid w-full max-w-xl grid-cols-1 gap-4 md:gap-5 lg:max-w-none lg:grid-cols-3 lg:gap-[1.275rem]">
+        {/* StackCards: on phones/tablets (three rows) the cards pile up over each other */}
+        <StackCards
+          minRows={3}
+          className="grid w-full max-w-xl grid-cols-1 gap-4 md:gap-5 lg:max-w-none lg:grid-cols-3 lg:gap-[1.275rem]"
+        >
           {displayGuides}
-        </div>
+        </StackCards>
       </div>
     </section>
   );

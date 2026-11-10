@@ -7,6 +7,7 @@ import {
   WeDoSeaWave,
   WeDoStar,
 } from "@/components/ui/reusable/svg";
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 import Image from "next/image";
 
@@ -152,9 +153,12 @@ export default function WhatWeDo() {
           </aside>
         </div>
 
-        {/* stack-cards: on phones/tablets each row pauses under the header and the next one
-            slides up over it. reveal-children: the rows still rise in one by one */}
-        <div className="reveal-children stack-cards">{displayWhatWeDoItems}</div>
+        {/* StackCards: on phones/tablets each row pauses under the header and the next one
+            slides up over it; laptop+ keeps the plain rows. reveal-children: the rows rise in
+            one by one when not stacking */}
+        <StackCards mobileOnly className="reveal-children">
+          {displayWhatWeDoItems}
+        </StackCards>
       </div>
     </section>
   );

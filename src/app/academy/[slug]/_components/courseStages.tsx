@@ -1,5 +1,6 @@
 import Button from "@/components/ui/button";
 import { ArrowUpEnd } from "@/components/ui/reusable/svg";
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 import type { SectionOf } from "@/lib/courses";
 import { cn } from "@/lib/utils";
@@ -37,7 +38,8 @@ export default function CourseStages({ section }: { section: SectionOf<"stages">
           )}
         </div>
 
-        <ol
+        <StackCards
+          as="ol"
           className={cn(
             "reveal-children grid gap-4 md:grid-cols-2",
             section.partCards ? "lg:gap-x-6" : "lg:gap-x-5.5",
@@ -147,7 +149,7 @@ export default function CourseStages({ section }: { section: SectionOf<"stages">
               )}
             </li>
           ))}
-        </ol>
+        </StackCards>
       </div>
     </section>
   );

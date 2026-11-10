@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 
 const steps = [
@@ -100,9 +101,9 @@ export default function FirstConversation() {
           </Typography>
         </div>
 
-        <div className="grid w-full max-w-xl grid-cols-1 gap-4 md:gap-5 lg:max-w-none lg:grid-cols-2 lg:gap-x-5 lg:gap-y-4.5">
+        <StackCards className="grid w-full max-w-xl grid-cols-1 gap-4 md:gap-5 lg:max-w-none lg:grid-cols-2 lg:gap-x-5 lg:gap-y-4.5">
           {displaySteps}
-        </div>
+        </StackCards>
       </div>
     </section>
   );

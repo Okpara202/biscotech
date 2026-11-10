@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 import type { SectionOf } from "@/lib/courses";
 import { cn } from "@/lib/utils";
@@ -14,13 +15,15 @@ export default function CourseCards({ section }: { section: SectionOf<"cards"> }
         {/* Figma: each card is only as tall as its text and centred along the row, unless the
             section asks for `sameHeight` (103px, text centred inside) */}
         {/* `scroll`: one sideways-scrolling row of 388px cards (Figma clips the row after three) */}
-        <ul
+        {/* StackCards: with enough rows the cards pile up over each other as you scroll (a
+            sideways row counts as one row, so it never stacks) */}
+        <StackCards
+          as="ul"
           className={cn(
             "reveal-children w-full gap-4",
             section.scroll
               ? "flex snap-x snap-mandatory items-stretch overflow-x-auto pb-2 lg:gap-5.75"
-              : // stack-cards: on phones/tablets the cards pile up over each other as you scroll
-                "stack-cards grid max-w-xl lg:max-w-none lg:grid-cols-3 lg:gap-5.75",
+              : "grid max-w-xl lg:max-w-none lg:grid-cols-3 lg:gap-5.75",
             !section.scroll && !section.sameHeight && "lg:items-center",
           )}
         >
@@ -50,7 +53,7 @@ export default function CourseCards({ section }: { section: SectionOf<"cards"> }
               </Typography>
             </li>
           ))}
-        </ul>
+        </StackCards>
       </div>
     </section>
   );

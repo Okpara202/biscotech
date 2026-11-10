@@ -39,32 +39,24 @@
   animation: wander var(--wander-time, 9s) ease-in-out var(--wander-delay, 0s) infinite;
 }
 
-/* Rows of cards that stack while scrolling (phones/tablets, where the row becomes a column):
-   each card pins just under the header, a little lower than the one before, and the next one
-   slides up over it. Put on the list; its children are the cards (give them a solid
-   background). Laptop+ keeps the normal row, so nothing sticks there. */
-@utility stack-cards {
-  @media (width < 64rem) {
-    & > * {
-      position: sticky;
-      top: calc(var(--header-h, 5rem) + 1rem + var(--stack-step, 0rem));
-      box-shadow: 0 -0.75rem 1.5rem -1.25rem rgba(18, 63, 58, 0.45);
-    }
-    & > :nth-child(2) {
-      --stack-step: 0.75rem;
-    }
-    & > :nth-child(3) {
-      --stack-step: 1.5rem;
-    }
-    & > :nth-child(4) {
-      --stack-step: 2.25rem;
-    }
-    & > :nth-child(5) {
-      --stack-step: 3rem;
-    }
-    & > :nth-child(6) {
-      --stack-step: 3.75rem;
-    }
+/* Card lists that stack while scrolling (StackCards sets data-stacking when the cards make
+   enough rows at this screen width, plus each card's --stack-step and --stack-h). Each row pins
+   just under the header, 12px lower than the row before, and the next row slides up over it.
+   A row taller than the screen pins by its bottom edge instead, so all of it can be read.
+   Unlayered so it beats a card's own `relative`. */
+[data-stacking] > * {
+  position: sticky;
+  top: min(
+    calc(var(--header-h, 5rem) + 1rem + var(--stack-step, 0rem)),
+    calc(100dvh - var(--stack-h, 0px) - 1rem)
+  );
+}
+
+/* Soft shadow along the top edge of a sliding card. In a layer so a card's hover shadow
+   (card-hover) still wins. */
+@layer components {
+  [data-stacking] > * {
+    box-shadow: 0 -0.75rem 1.5rem -1.25rem rgba(18, 63, 58, 0.45);
   }
 }
 
@@ -219,12 +211,10 @@ main > :first-child {
       animation-range: entry 0% entry 80%;
     }
 
-    /* Stacking cards (phones/tablets): no fade-in, or each card would be see-through while
-       it slides up over the one before. Laptop+ keeps the item-by-item reveal (rise-in). */
-    @media (width < 64rem) {
-      main .reveal-children.stack-cards > * {
-        animation: none;
-      }
+    /* Stacking cards: no fade-in, or each card would be see-through while it slides up over
+       the one before. Lists that aren't stacking at this width keep the item-by-item reveal. */
+    main .reveal-children[data-stacking] > * {
+      animation: none;
     }
   }
 

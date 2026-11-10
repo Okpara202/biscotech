@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 import type { SectionOf } from "@/lib/courses";
 import CourseSectionHeading from "./courseSectionHeading";
@@ -16,7 +17,10 @@ export default function CourseHighlights({ section }: { section: SectionOf<"high
           titleClassName="lg:max-w-109.5"
         />
 
-        <ul className="reveal-children grid w-full max-w-xl gap-3 md:max-w-none md:grid-cols-2 lg:gap-x-5.5 lg:gap-y-4.5">
+        <StackCards
+          as="ul"
+          className="reveal-children grid w-full max-w-xl gap-3 md:max-w-none md:grid-cols-2 lg:gap-x-5.5 lg:gap-y-4.5"
+        >
           {section.items.map((item) => (
             <li
               key={item}
@@ -27,7 +31,7 @@ export default function CourseHighlights({ section }: { section: SectionOf<"high
               </Typography>
             </li>
           ))}
-        </ul>
+        </StackCards>
       </div>
     </section>
   );

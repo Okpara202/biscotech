@@ -6,6 +6,7 @@ import {
   WeDoSeaWave,
   WeDoStar,
 } from "@/components/ui/reusable/svg";
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 
 // Exported so the Services page can describe the same services to search engines (JSON-LD)
@@ -106,8 +107,11 @@ export default function OurCapabilities() {
           </Typography>
         </Typography>
 
-        {/* Figma: two 590px cards per row, 20px apart; one column on phones */}
-        <ul className="reveal-children mt-8 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-5 lg:gap-x-5 lg:gap-y-6.5">
+        {/* Figma: two 590px cards per row, 20px apart; one column on phones (where they stack) */}
+        <StackCards
+          as="ul"
+          className="reveal-children mt-8 grid grid-cols-1 gap-4 md:mt-6 md:grid-cols-2 md:gap-5 lg:gap-x-5 lg:gap-y-6.5"
+        >
           {services.map((service) => (
             <li
               key={service.title}
@@ -147,7 +151,7 @@ export default function OurCapabilities() {
               </ul>
             </li>
           ))}
-        </ul>
+        </StackCards>
       </div>
     </section>
   );

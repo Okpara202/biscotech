@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 
 const steps = [
@@ -43,9 +44,13 @@ export default function HowWeWork() {
           </Typography>
         </div>
 
-        {/* Steps. stack-cards: on phones they pile up over each other as you scroll (each
-            needs the section's teal behind it to cover the one underneath) */}
-        <ol className="reveal-children stack-cards grid grid-cols-1 gap-6.5 md:grid-cols-3">
+        {/* Steps. StackCards: on phones (three rows) they pile up over each other as you
+            scroll (each needs the section's teal behind it to cover the one underneath) */}
+        <StackCards
+          as="ol"
+          minRows={3}
+          className="reveal-children grid grid-cols-1 gap-6.5 md:grid-cols-3"
+        >
           {steps.map((step) => (
             <li
               key={step.label}
@@ -67,7 +72,7 @@ export default function HowWeWork() {
               </div>
             </li>
           ))}
-        </ol>
+        </StackCards>
       </div>
     </section>
   );

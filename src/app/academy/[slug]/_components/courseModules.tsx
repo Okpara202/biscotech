@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import Typography from "@/components/ui/typography";
 import type { SectionOf } from "@/lib/courses";
 import CourseSectionHeading from "./courseSectionHeading";
@@ -10,7 +11,10 @@ export default function CourseModules({ section }: { section: SectionOf<"modules
       <div className="page-container flex flex-col gap-8 md:gap-10 lg:gap-6">
         <CourseSectionHeading label={section.label} title={section.title} intro={section.intro} />
 
-        <ol className="reveal-children grid gap-4 md:grid-cols-2 lg:gap-x-5.5 lg:gap-y-4.5">
+        <StackCards
+          as="ol"
+          className="reveal-children grid gap-4 md:grid-cols-2 lg:gap-x-5.5 lg:gap-y-4.5"
+        >
           {section.modules.map((module) => (
             <li
               key={module.label}
@@ -27,7 +31,7 @@ export default function CourseModules({ section }: { section: SectionOf<"modules
               </Typography>
             </li>
           ))}
-        </ol>
+        </StackCards>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import Button from "@/components/ui/button";
+import StackCards from "@/components/ui/reusable/stackCards";
 import { DarkArrowRightUp } from "@/components/ui/reusable/svg";
 import Typography from "@/components/ui/typography";
 import { courses, SHOW_PRICES } from "@/lib/courses";
@@ -28,7 +29,7 @@ export default function CourseCatalogue() {
           </Typography>
         </div>
 
-        <div className="reveal-children grid gap-5 md:grid-cols-2 md:gap-x-5.5 md:gap-y-8">
+        <StackCards className="reveal-children grid gap-5 md:grid-cols-2 md:gap-x-5.5 md:gap-y-8">
           {courses.map((course) => (
             // Figma: 55px side padding, 41px top/bottom, ~23px between each block
             <article
@@ -75,7 +76,7 @@ export default function CourseCatalogue() {
               </Button>
             </article>
           ))}
-        </div>
+        </StackCards>
       </div>
     </section>
   );

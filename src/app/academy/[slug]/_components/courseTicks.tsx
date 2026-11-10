@@ -1,3 +1,4 @@
+import StackCards from "@/components/ui/reusable/stackCards";
 import type { SectionOf } from "@/lib/courses";
 import { Checklist } from "./courseExpect";
 import CourseSectionHeading, { sectionTones } from "./courseSectionHeading";
@@ -10,11 +11,11 @@ export default function CourseTicks({ section }: { section: SectionOf<"ticks"> }
       <div className="page-container flex flex-col gap-8 md:gap-10 lg:gap-6">
         <CourseSectionHeading label={section.label} title={section.title} intro={section.intro} />
 
-        <div className="reveal-children grid gap-5 md:grid-cols-2 lg:gap-6.5">
+        <StackCards className="reveal-children grid gap-5 md:grid-cols-2 lg:gap-6.5">
           {section.lists.map((items) => (
             <Checklist key={items[0]} items={items} />
           ))}
-        </div>
+        </StackCards>
       </div>
     </section>
   );
