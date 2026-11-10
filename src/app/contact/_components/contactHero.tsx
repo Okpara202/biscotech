@@ -1,9 +1,12 @@
 import Typography, { variantStyles } from "@/components/ui/typography";
 import { DarkArrowRightUp } from "@/components/ui/reusable/svg";
 import { CONTACT_EMAIL } from "@/components/ui/reusable/inquiry";
+import SocialLinks from "@/components/ui/reusable/socialLinks";
 import { siteConfig } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import ContactForm from "./contactForm";
+
+const fullAddress = `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.country}`;
 
 const details = [
   { label: "WHAT WE DO", text: "Businesses · Startups · Personal brands" },
@@ -41,9 +44,9 @@ export default function ContactHero() {
             </Typography>
           </div>
 
-          {/* Details list: sage line under each, 40px top/bottom on laptop (Figma) */}
+          {/* Details list: sage line under each, 20px top/bottom (Figma) */}
           <ul className="w-full max-w-xl lg:max-w-147.5">
-            <li className="flex flex-col items-start gap-1 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10">
+            <li className="flex flex-col items-start gap-1 border-b border-secondary-accent py-5 lg:gap-3">
               <Typography variant="primaryButton" as="p" className="text-primary-brand">
                 EMAIL
               </Typography>
@@ -58,7 +61,7 @@ export default function ContactHero() {
                 <DarkArrowRightUp />
               </a>
             </li>
-            <li className="flex flex-col items-start gap-1 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10">
+            <li className="flex flex-col items-start gap-1 border-b border-secondary-accent py-5 lg:gap-3">
               <Typography variant="primaryButton" as="p" className="text-primary-brand">
                 PHONE
               </Typography>
@@ -73,18 +76,34 @@ export default function ContactHero() {
                 <DarkArrowRightUp />
               </a>
             </li>
-            <li className="flex flex-col items-start gap-2 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10">
+            <li className="flex flex-col items-start gap-2 border-b border-secondary-accent py-5 lg:gap-3">
               <Typography variant="primaryButton" as="p" className="text-primary-brand">
                 VISIT US
               </Typography>
-              <Typography variant="text" as="address" className="not-italic text-text-charcoal">
-                {siteConfig.address.street}, {siteConfig.address.city}, {siteConfig.address.country}
-              </Typography>
+              {/* Opens Google Maps (the app on phones) with a pin on the office */}
+              <a
+                href={siteConfig.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${fullAddress} in Google Maps`}
+                className="group inline-flex items-start gap-2 text-text-charcoal"
+              >
+                <Typography
+                  variant="text"
+                  as="address"
+                  className="not-italic underline-offset-4 group-hover:underline"
+                >
+                  {fullAddress}
+                </Typography>
+                <span className="shrink-0 [&>svg]:size-5">
+                  <DarkArrowRightUp />
+                </span>
+              </a>
             </li>
             {details.map((detail) => (
               <li
                 key={detail.label}
-                className="flex flex-col items-start gap-2 border-b border-secondary-accent py-6 lg:gap-3 lg:py-10"
+                className="flex flex-col items-start gap-2 border-b border-secondary-accent py-5 lg:gap-3"
               >
                 <Typography variant="primaryButton" as="p" className="text-primary-brand">
                   {detail.label}
@@ -94,6 +113,13 @@ export default function ContactHero() {
                 </Typography>
               </li>
             ))}
+            {/* Figma: label, then the icons 12px below */}
+            <li className="flex flex-col items-start gap-3 border-b border-secondary-accent py-5">
+              <Typography variant="primaryButton" as="p" className="text-primary-brand">
+                FOLLOW US ON SOCIAL MEDIA
+              </Typography>
+              <SocialLinks className="text-primary-brand" />
+            </li>
           </ul>
         </div>
 

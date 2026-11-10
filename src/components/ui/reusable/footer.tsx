@@ -3,6 +3,7 @@ import Link from "next/link";
 import Typography from "../typography";
 import { FooterRow } from "./nav";
 import { courses } from "@/lib/courses";
+import SocialLinks from "./socialLinks";
 
 const footerLinks = [
   { href: "/services", label: "Services" },
@@ -58,20 +59,23 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Always side by side. Phones: two equal halves, each text left-aligned in its half
-            (may wrap onto two lines). md+: Figma's left/right split. */}
-        <div className="mt-6 flex items-start justify-between gap-4 border-t border-secondary-accent pt-3 md:mt-28.75 md:items-center md:gap-2 md:pt-6.5">
+        {/* Phones: social icons on their own line, then the two texts side by side in equal
+            halves (may wrap onto two lines). md+: Figma's row, icons in the middle. */}
+        <div className="mt-6 flex flex-wrap items-start justify-between gap-x-4 gap-y-3 border-t border-secondary-accent pt-3 md:mt-28.75 md:flex-nowrap md:items-center md:gap-2 md:pt-6.5">
           <Typography
             variant="contactHeader"
             as="p"
-            className="flex-1 text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-sm lg:text-base lg:leading-7"
+            className="flex-1 text-[0.6875rem] leading-4 md:flex-1 md:p-2.5 md:text-sm lg:text-base lg:leading-7"
           >
             Startups · Businesses · Personal brands
           </Typography>
+
+          <SocialLinks className="order-first w-full md:order-none md:w-auto md:justify-center" />
+
           <Typography
             variant="contactHeader"
             as="p"
-            className="flex-1 text-[0.6875rem] leading-4 md:flex-none md:p-2.5 md:text-sm lg:text-base lg:leading-7"
+            className="flex-1 text-[0.6875rem] leading-4 md:flex-1 md:p-2.5 md:text-right md:text-sm lg:text-base lg:leading-7"
           >
             Thoughtful digital. Meaningful growth.
           </Typography>

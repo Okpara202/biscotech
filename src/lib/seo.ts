@@ -9,6 +9,22 @@ const siteUrl =
     ? "http://localhost:3000"
     : "https://www.biscotech.org";
 
+const address = {
+  street: "No. 8 Anjali Crescent, Independence Layout",
+  city: "Enugu",
+  state: "Enugu State",
+  countryCode: "NG",
+  country: "Nigeria",
+};
+
+// Footer icons and the structured data. An empty url hides that icon until it's filled in.
+const socialLinks = {
+  // A post for now; swap in the LinkedIn page itself (linkedin.com/company/... or /in/...) when known
+  linkedin: "https://www.linkedin.com/posts/bisco-tech_introduction-activity-7515479473140711424-rs7r",
+  instagram: "https://www.instagram.com/bisco.tech/",
+  tiktok: "https://www.tiktok.com/@bisco.tech",
+};
+
 export const siteConfig = {
   name: "BiscoTech",
   url: siteUrl,
@@ -23,14 +39,15 @@ export const siteConfig = {
   phone: { display: "+234 707 6546 314", tel: "+2347076546314" },
   // Opens a chat with the same number in the WhatsApp app (phones) or WhatsApp Web (computers)
   whatsapp: "https://wa.me/2347076546314",
-  address: {
-    street: "No. 8 Anjali Crescent, Independence Layout",
-    city: "Enugu",
-    state: "Enugu State",
-    countryCode: "NG",
-    country: "Nigeria",
-  },
-  socials: ["https://www.instagram.com/bisco.tech/"],
+  address,
+  socialLinks,
+  // The profiles search engines tie to the business (structured data sameAs)
+  socials: Object.values(socialLinks).filter(Boolean),
+  // A Google Maps search for the address (Contact page "Visit us" and the structured data).
+  // Swap in the Google Business Profile share link if there is one.
+  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${address.street}, ${address.city}, ${address.country}`,
+  )}`,
   // Google needs a logo of at least 112×112px; Logo.png is only 60×71
   logo: "/img/LogoLarge.png",
   keywords: [

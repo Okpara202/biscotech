@@ -92,6 +92,8 @@ const jsonLd = {
         addressRegion: siteConfig.address.state,
         addressCountry: siteConfig.address.countryCode,
       },
+      // Lets Google link the listing to the office on the map
+      hasMap: siteConfig.mapsUrl,
       sameAs: [...siteConfig.socials],
       knowsAbout: [
         "Web design",
